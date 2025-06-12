@@ -10,7 +10,7 @@ author:
 # The `>` after `description:` means to ignore line-breaks until next key. If
 #   you wish to omit the line-break after the end of text, use `>-` instead.
 description: >
-  Joshua Clugston is a 3rd year industrial engineering PhD student at Arizona State University. 
+  Industrial engineering PhD student at Arizona State University. 
 
 
 # # Build settings
