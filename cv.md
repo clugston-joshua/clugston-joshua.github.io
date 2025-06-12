@@ -7,8 +7,6 @@ permalink: /cv/
 ---
 ---
 
-# Joshua Clugston
-
 <span class="iconify" data-icon="charm:person"></span> [example.com](https://example.com/)
   : <span class="iconify" data-icon="tabler:brand-github"></span> [github.com/example](https://github.com/example)
   : <span class="iconify" data-icon="tabler:phone"></span> [(+1) 123-456-7890](https://wa.me/11234567890)
