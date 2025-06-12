@@ -81,9 +81,9 @@ minima:
     - title: Main Project Repos
       icon: github
       url: "https://github.com/JoshuaClugston"
-    - title: Jekyll at X (formerly Twitter)
-      icon: x-twitter
-      url: "https://x.com/jekyllrb"
+    - title: Joshua Clugston on LinkedIn
+      icon: linkedin
+      url: "https://www.linkedin.com/in/joshua-clugston-7a20221a5/"
 
   # Hide syndication feed subscription link.
   #   RSS / Atom feed link is always rendered as the last item of social-links
