@@ -7,3 +7,5 @@
 #
 layout: home
 ---
+
+Some text here.
