@@ -1,11 +1,11 @@
 # Site-wide settings
 # ------------------
 url: clugston-joshua.github.io
-title: Your awesome title
+title: Joshua Clugston
 
 author:
-  name: GitHub User
-  email: your-email@domain.com
+  name: Joshua Clugston
+  email: clugston-joshua@domain.com
 
 # The `>` after `description:` means to ignore line-breaks until next key. If
 #   you wish to omit the line-break after the end of text, use `>-` instead.
@@ -28,7 +28,7 @@ description: >
 #   do not affect your site adversely.
 remote_theme: jekyll/minima@d4d779a
 
-Minima requires the following plugins:
+# Minima requires the following plugins:
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
@@ -54,7 +54,7 @@ minima:
   #   * solarized-light    Light variant of solarized color scheme.
   #   * solarized-dark     Dark variant of solarized color scheme.
   #   * solarized          Adaptive skin for solarized color scheme skins.
-  skin: auto
+  skin: dark
 
   # Specific pages for site navigation.
   #   If you wish to link only specific pages in the site-navigation, use this
@@ -78,9 +78,9 @@ minima:
   #     * icon     Font Awesome icon id. `github` corresponds to `fa-github`.
   #     * url      Full URL of social profile.
   social_links:
-    - title: Minima Theme repository at GitHub
+    - title: Main Project Repos
       icon: github
-      url: "https://github.com/jekyll/minima"
+      url: "https://github.com/JoshuaClugston"
     - title: Jekyll at X (formerly Twitter)
       icon: x-twitter
       url: "https://x.com/jekyllrb"
