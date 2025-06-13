@@ -7,10 +7,11 @@
 #
 layout: home
 ---
+This webpage displays some of my recent accomplishments 🎉 and ideas 💡
 
-- This webpage displays some of my recent accomplishments 🎉 and ideas 💡
+Most projects I work on explore the development of effecient methods for solving problems with a lot of data 📊
 
-- Most of the projects I work on explore the development of effecient methods for solving problems with a lot of data 📊
+Feel free to reach out with opportunities to collaborate 🤝
 
-- Feel free to reach out with opportunities to collaborate 🤝
-
+--- 
+---
