@@ -14,4 +14,3 @@ Most projects I work on explore the development of effecient methods for solving
 Feel free to reach out with opportunities to collaborate 🤝
 
 --- 
----
