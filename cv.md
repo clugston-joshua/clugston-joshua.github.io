@@ -30,7 +30,7 @@ permalink: /cv/
 ## Awards and Fellowships
 
 - **Bert Keats Fellowship Endownment**, Arizona State University
-  : August, 2025 - Mat, 2026
+  : August, 2025 - May, 2026
 
 - **Spring 2025 Graduate College Univeristy Grant**, Arizona State University
   : January, 2025 - May, 2025
