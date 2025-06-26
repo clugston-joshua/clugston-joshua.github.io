@@ -13,11 +13,13 @@ One additional possible method for solving potentially large-scale MINLPs is to 
 
 ## Background 
 Consider the 0-1 quadratic knapsack problem:  
-\begin{alignat*}{1}
+
+\begin{alignat}{1}
 \text{maximize }\ & \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}x_{i}x_{j}, \label{1a}\tag{1a}\\
 \text{subject to }\ & \sum_{i=1}^{n}w_{i}x_{i} \leq C, \label{1b}\tag{1b}\\
 & \mathbf{x}\in \{0,1\}^{n} =: \mathbb{B}^{n} \label{1c}\tag{1c}.
-\end{alignat*}
+\end{alignat}
+
 Specifically, in \eqref{1a}-\eqref{1c} above, $C$ is the available space in the knapsack, $w_{i}$ for $i=1,\ldots,n$ are non-negative weights associated with inluding item $i$ in the knapsack, and $p_{ij}$ for $i=1,\ldots,n$, $j=1,\ldots,n$ are non-negative profits associated with including item $i$ and item $j$ together in the knapsack. By solving \eqref{1a}-\eqref{1c}, the ultimate goal is to maximize profit corresponding to packing items in the knapsack, while simultaneously considering item interaction and ensuring that capacity restrictions are satisfied. 
 
 The model described in \eqref{1a}-\eqref{1c} lends itself to many applications, resulting from its general form. Most popularly, the QKP is well-known for its application to a decision problem utilized for determining optimal satellite station locations. Given its applicability in this context, it should likely not come as a suprise to the reader that the QKP has similarly seen use in the context of other optimal location, planning problems. For instance, QKP has been used in determining the optimal placement of airports and railway and freight handling stations. In addition, some other popular applications of QKP involve compiler design,  very large scale integration, and financial applications which, for example, compare optimal investment strategies. It it further observed that QKP is a generalization of a difficult combinatorial problem called the maximum clique problem, which itself has many applications ranging from social network analysis to chemistry.  
@@ -185,3 +187,5 @@ From \textbf{Table \ref{results-table1}} it is seen that the rollout approach co
 
 ## Conclusion
 As discussed in the previous section, rollout is comparable to solving \eqref{2a}-\eqref{2g} with CPLEX for QKP instance of moderate size and density, to large density. When considering large and difficult QKP instances, it is clear that rollout scales much better than solving \eqref{2a}-\eqref{2g} with CPLEX. Thus, rollout appears to be a viable option for a scalable algorithm which may be used to solve large-scale QKP instances. Given the clear improvement in computational speed, accuracy of the proposed approach could potentially be further improved by employing a multi-step lookahead rollout approach. Furthermore, given that McCormick outperforms rollout in some instances, a different base policy could be attempted in later work to improve the results observed. For instance, a potential base policy which may provide additional improvement would consider solving the LP relaxation of \eqref{2a}-\eqref{2g}. Future work should then compare the performance of the proposed approach against other well-known approaches such as those introduced in \cite{Fomeni-Letchford} and \cite{FENNICH2024102}, as well as against the approach in which subgradient methods or the LP relaxation of \eqref{2a}-\eqref{2g} are used. A more extensive study across varying instances could also be conducted to provide more evidence toward the efficacy of each proposed approach.    
+
+## References
