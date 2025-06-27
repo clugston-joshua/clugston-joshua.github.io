@@ -145,7 +145,7 @@ Comparison was made between the proposed rollout algorithm with base policy as d
 To compare performance, a "gap" is reported for the proposed rollout method which depends on the solution obtained by CPLEX in each case. Instead of using a gap to determine performance of the rollout method in the traditional sense, the idea is to compare the solution obtained by the proposed rollout method with the solution obtained by the exact method used by CPLEX. Particularly, the gap reported is computed according to
 
 $$
-`Gap` = \frac{|z^{r}-z^{c}|}{z^{c}},
+\texttt{Gap} = \frac{|z^{r}-z^{c}|}{z^{c}},
 $$
 
 where the objective value for rollout, $z^{r}$, and the objective value for CPLEX, $z^{c}$, are acquired at termination throughout. Seeing as a time limit is imposed in the McCormick case, the average gap across 10 runs of solving is reported, as opposed to when CPLEX is used to solve (1a)-(1c) directly. The reason for this inclusion is a consequence of the fact that CPLEX may not terminate within the prescribed time limit, as was observed on several runs during numerical experiments. Regardless, across all comparisons made, numerical values such as the number of seconds needed for termination and gap at termination, are reported as the sample average over 10 runs for each method. 
