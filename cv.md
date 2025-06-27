@@ -40,7 +40,3 @@ permalink: /cv/
 
 - **Fulton Fellowship**, Arizona State University
   : August, 2023 - Current
-
-## Skills
-
-**Programming:** Julia, Python, MATLAB, BASH, AWK, SED, SAS, R, SQL
