@@ -81,7 +81,7 @@ for all $k\in \mathbb{Z}_{\geq 0}$. Within each multiplier update, a previous so
 By considering $r \in [C]$, $k\in [n]$, the original problem is restricted and written as:
 
 \begin{equation}
-\max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} : \sum_{i=1}^{k}w_{i}x_{i} = r,\ \mathbf{x}\in\mathbb{B}^{k}\right\},
+\max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} : \sum_{i=1}^{k}w_{i}x_{i} = r,\ \mathbf{x}\in\mathbb{B}^{k}\right\\},
 \end{equation}
 
 where $k$ denotes the current item's index and $r$ denotes the current amount of remaining space in the knapsack when considering the $k$th item. Then, similar to before, a subgradient approach is considered, with the restricted problem (7) having restricted Lagrangian relaxation subproblems 
