@@ -20,7 +20,7 @@ $$
 \begin{alignat}{1}
 \text{maximize }\ & \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}x_{i}x_{j}, \\
 \text{subject to }\ & \sum_{i=1}^{n}w_{i}x_{i} \leq C, \\
-& \mathbf{x}\in \{0,1\}^{n} =: \mathbb{B}^{n}. 
+& \mathbf{x}\in \\{0,1\\}^{n} =: \mathbb{B}^{n}. 
 \end{alignat}
 $$
 
@@ -30,7 +30,7 @@ The model described in (1a)-(1c) lends itself to many applications, resulting fr
 
 Despite its general applicability, model (1a)-(1c) has several difficulties which present it as a very challenging problem to solve, especially for instances of practical size. Due to the presence of bilinear terms, $x_{i}x_{j}$ for $i=1,\ldots,n$ and $j= 1,\ldots,n$, which are non-convex, (1a)-(1c) is referred to as a *non-convex mixed-integer nonlinear program*. More precisely, it is observed that the continuous relaxation of (1a)-(1c) is a non-convex NLP. In which case, non-convexity present an especially difficult challenge to resolve due to the potential for local minima to hinder the search for global solutions. Moreover, because (1a)-(1c) can be seen as a generalization of the maximum clique problem, which is known to be NP-hard in the strong sense, it follows that QKP is NP-hard in the strong sense.  Therefore, in contrast to the standard 0-1 knapsack problem, unless $\text{P} = \text{NP}$, it is unlikely that there exists a pseudo-polynomial time algorithm which may be used to solve QKP. In practice, particular difficulty stems from the data $p_{ij}$, and solving QKP may be too computationally intensive for moderately sized problems in some cases, provided that these data are restrictive. This latter point will be discussed in more detail in \textbf{Section \ref{data}}.  
 
-To overcome some of the difficult, it is common to reformulate QKP to a simpler form. A popular technique regularly employed in global optimization to deal with bilinear terms such as $x_{i}x_{j}$ utilizes tight-fitting convex/concave under and over-approximators, called *McCormick envelopes*. Through the introduction of an auxiliary variable $u_{ij} = x_{i}x_{j})\ for all $i= 1,\ldots,n$ and $j=1,\ldots, n$, model (1a)-(1c) may be rewritten in relaxed form as follows:
+To overcome some of the difficult, it is common to reformulate QKP to a simpler form. A popular technique regularly employed in global optimization to deal with bilinear terms such as $x_{i}x_{j}$ utilizes tight-fitting convex/concave under and over-approximators, called *McCormick envelopes*. Through the introduction of an auxiliary variable $u_{ij} = x_{i}x_{j})$ for all $i= 1,\ldots,n$ and $j=1,\ldots, n$, model (1a)-(1c) may be rewritten in relaxed form as follows:
 
 $$
 \begin{alignat}{1}
@@ -87,19 +87,19 @@ By considering $r \in [C]$, $k\in [n]$, the original problem is restricted and w
 where $k$ denotes the current item's index and $r$ denotes the current amount of remaining space in the knapsack when considering the $k$th item. Then, similar to before, a subgradient approach is considered, with the restricted problem (7) having restricted Lagrangian relaxation subproblems 
 
 \begin{equation}
-\max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\}.
+\max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}.
 \end{equation}
 
 Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item with capacity used, $r$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $\mathbf{y}$ and $\lambda$ is defined as in \cite{Fomeni-Letchford} using 
 
 \begin{equation}
-g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \{k\}}p_{kj},
+g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \\{k\\}}p_{kj},
 \end{equation}
 
 which is the profit of including item $k$ with capacity used $r$. A viable rollout approach introduces approximate costs-to-go function 
 
 \begin{equation}
-\tilde{J}(\mathbf{y}) = \max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\}
+\tilde{J}(\mathbf{y}) = \max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}
 \end{equation}
 
 which is an upper bound on (7), so that approximate $Q-$factors 
@@ -108,7 +108,7 @@ which is an upper bound on (7), so that approximate $Q-$factors
 \tilde{Q}(\mathbf{y},u) = g(\mathbf{y},u) + \tilde{J}(\mathbf{y}),
 \end{equation}
 
-with $u \in \mathcal{U}(\mathbf{y})=:\{0,1\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
+with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
 | :--------------------------------------------------: |
 |*Rollout for QKP|
@@ -134,13 +134,13 @@ Some remarks with respect to the proposed rollout algorithm are in order. First 
 Data is generated as normally done within the context of QKP, and follows closely the description provided in \cite{Fomeni-Letchford}. Precisely, the profits, 
 
 \begin{equation}
-p_{ij} \sim \begin{cases}0 & \text{with probability} 1-\Delta, \\\\ \mathcal{U}\{1,\ldots,100\} & \text{with probability } \Delta\end{cases}
+p_{ij} \sim \begin{cases}0 & \text{with probability } 1-\Delta, \\\\ \mathcal{U}\\{1,\ldots,100\\} & \text{with probability } \Delta\end{cases}
 \end{equation}
 
-for each $i=1\ldots,n$ and $j=1,\ldots,n$, where $\Delta$ is referred to as the *density*. The density, $\Delta$, is particularly important for determining the difficulty of the problem instance in consideration. For larger values of $\Delta$, the impact of its effects is observed through the objective function, in which a larger $\Delta$ may yield an objective function with greatly many more terms. Consequently, this entails that there more likely will be many interactions that will need to be considered when optimizing, therein resulting in a significantly more challenging problem. On the other hand, the remaining data $w_{i} \sim \mathcal{U}\{1,\ldots,n\}$ for each $i$, whereas $C \sim \mathcal{U}\{n,\ldots,\sum_{i=1}^{n}w_{i}\}$.
+for each $i=1\ldots,n$ and $j=1,\ldots,n$, where $\Delta$ is referred to as the *density*. The density, $\Delta$, is particularly important for determining the difficulty of the problem instance in consideration. For larger values of $\Delta$, the impact of its effects is observed through the objective function, in which a larger $\Delta$ may yield an objective function with greatly many more terms. Consequently, this entails that there more likely will be many interactions that will need to be considered when optimizing, therein resulting in a significantly more challenging problem. On the other hand, the remaining data $w_{i} \sim \mathcal{U}\\{1,\ldots,n\\}$ for each $i$, whereas $C \sim \mathcal{U}\\{n,\ldots,\sum_{i=1}^{n}w_{i}\\}$.
 
 ## Numerical Results
-Comparison was made between the proposed rollout algorithm with base policy as defined in \textbf{Section \ref{method}}, and by using CPLEX version 1.0.3 to solve the original problem directly. Additionally, a further comparison between the proposed rollout algorithm and solving (2a)-(2g) directly using CPLEX was made. For each comparison, numerical experiments were performed using Julia on a 2020 M1 Macbook Pro with 16 GB of RAM. Data were selected according to \textbf{Section \ref{data}}, with step size $s^{0} = 1$ throughout, total number of items and density being considered in the CPLEX comparison for (1a)-(1c) being $n\in \{50,100,150\}$ and $\Delta \in \{0.8,0.65,0.5\}$, respectively, and $n\in \{50,100,200\}$ and $\Delta \in \{0.8,0.65,0.8\}$ for the case when CPLEX was applied to solve (2a)-(2g). Default parameters for CPLEX are used for all numerical experiments, with the exception of the time limit in the comparison against solving (2a)-(2g) using CPLEX. In this comparison, a time limit of 600 seconds was imposed.  
+Comparison was made between the proposed rollout algorithm with base policy as defined in \textbf{Section \ref{method}}, and by using CPLEX version 1.0.3 to solve the original problem directly. Additionally, a further comparison between the proposed rollout algorithm and solving (2a)-(2g) directly using CPLEX was made. For each comparison, numerical experiments were performed using Julia on a 2020 M1 Macbook Pro with 16 GB of RAM. Data were selected according to \textbf{Section \ref{data}}, with step size $s^{0} = 1$ throughout, total number of items and density being considered in the CPLEX comparison for (1a)-(1c) being $n\in \\{50,100,150\\}$ and $\Delta \in \\{0.8,0.65,0.5\\}$, respectively, and $n\in \\{50,100,200\\}$ and $\Delta \in \\{0.8,0.65,0.8\\}$ for the case when CPLEX was applied to solve (2a)-(2g). Default parameters for CPLEX are used for all numerical experiments, with the exception of the time limit in the comparison against solving (2a)-(2g) using CPLEX. In this comparison, a time limit of 600 seconds was imposed.  
 
 To compare performance, a "gap" is reported for the proposed rollout method which depends on the solution obtained by CPLEX in each case. Instead of using a gap to determine performance of the rollout method in the traditional sense, the idea is to compare the solution obtained by the proposed rollout method with the solution obtained by the exact method used by CPLEX. Particularly, the gap reported is computed according to
 
