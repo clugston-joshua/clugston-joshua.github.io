@@ -16,13 +16,11 @@ One additional possible method for solving potentially large-scale MINLPs is to 
 ## Background 
 Consider the 0-1 quadratic knapsack problem:  
 
-$$
-\begin{alignat}{1}
+$$\begin{alignat}{1}
 \text{maximize }\ & \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}x_{i}x_{j}, \\
 \text{subject to }\ & \sum_{i=1}^{n}w_{i}x_{i} \leq C, \\
 & \mathbf{x}\in \\{0,1\\}^{n} =: \mathbb{B}^{n}. 
-\end{alignat}
-$$
+\end{alignat}$$
 
 Specifically, in (1a)-(1c) above, $C$ is the available space in the knapsack, $w_{i}$ for $i=1,\ldots,n$ are non-negative weights associated with inluding item $i$ in the knapsack, and $p_{ij}$ for $i=1,\ldots,n$, $j=1,\ldots,n$ are non-negative profits associated with including item $i$ and item $j$ together in the knapsack. By solving (1a)-(1c), the ultimate goal is to maximize profit corresponding to packing items in the knapsack, while simultaneously considering item interaction and ensuring that capacity restrictions are satisfied. 
 
@@ -32,8 +30,7 @@ Despite its general applicability, model (1a)-(1c) has several difficulties whic
 
 To overcome some of the difficult, it is common to reformulate QKP to a simpler form. A popular technique regularly employed in global optimization to deal with bilinear terms such as $x_{i}x_{j}$ utilizes tight-fitting convex/concave under and over-approximators, called *McCormick envelopes*. Through the introduction of an auxiliary variable $u_{ij} = x_{i}x_{j})$ for all $i= 1,\ldots,n$ and $j=1,\ldots, n$, model (1a)-(1c) may be rewritten in relaxed form as follows:
 
-$$
-\begin{alignat}{1}
+$$\begin{alignat}{1}
 \text{maximize }\ & \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}u_{ij}, \\
 \text{subject to }\ & u_{ij} \geq x_{j}+x_{i}-1,\text{ for all $i\in [n]$, $j\in [n]$} \\
 & u_{ij} \leq x_{i},\text{ for all $i\in [n]$, $j\in [n]$},\\
@@ -41,8 +38,7 @@ $$
 & \sum_{i=1}^{n}w_{i}x_{i}\leq C,\\
 & \mathbf{x} \in \mathbb{B}^{n},\\
 & \mathbf{u}\in\mathbb{R}_{\geq0}^{n\times n}.
-\end{alignat}
-$$
+\end{alignat}$$
 
 However, because $x_{i} \in\mathbb{B}$ for all $i$, the aforementioned relaxed problem is actually an exact reformulation of (1a)-(1c), so solving (2a)-(2g) equates to solving the original QKP formulation. This is especially beneficial since now the continuous relaxation of (2a)-(2g) can be applied to obtain an over-estimate of the solution to the original problem.
 
