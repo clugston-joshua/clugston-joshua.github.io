@@ -16,13 +16,13 @@ One additional possible method for solving potentially large-scale MINLPs is to 
 ## Background 
 Consider the 0-1 quadratic knapsack problem:  
 
-$$
+\begin{equation*}
 \begin{alignat}{1}
 \text{maximize }\ & \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}x_{i}x_{j}, \\
 \text{subject to }\ & \sum_{i=1}^{n}w_{i}x_{i} \leq C, \\
 & \mathbf{x}\in \\{0,1\\}^{n} =: \mathbb{B}^{n}. 
 \end{alignat}
-$$
+\end{equation*}
 
 Specifically, in (1a)-(1c) above, $C$ is the available space in the knapsack, $w_{i}$ for $i=1,\ldots,n$ are non-negative weights associated with inluding item $i$ in the knapsack, and $p_{ij}$ for $i=1,\ldots,n$, $j=1,\ldots,n$ are non-negative profits associated with including item $i$ and item $j$ together in the knapsack. By solving (1a)-(1c), the ultimate goal is to maximize profit corresponding to packing items in the knapsack, while simultaneously considering item interaction and ensuring that capacity restrictions are satisfied. 
 
