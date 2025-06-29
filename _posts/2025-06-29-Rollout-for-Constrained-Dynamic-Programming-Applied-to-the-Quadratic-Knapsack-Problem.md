@@ -81,25 +81,25 @@ for all $k\in \mathbb{Z}_{\geq 0}$. Within each multiplier update, a previous so
 By considering $r \in [C]$, $k\in [n]$, the original problem is restricted and written as:
 
 $$
-\max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} : \sum_{i=1}^{k}w_{i}x_{i} = r,\ \mathbf{x}\in\mathbb{B}^{k}\right\\},
+\max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} : \sum_{i=1}^{k}w_{i}x_{i} = r,\ \mathbf{x}\in\mathbb{B}^{k}\right\},
 $$
 
 where $k$ denotes the current item's index and $r$ denotes the current amount of remaining space in the knapsack when considering the $k$th item. Then, similar to before, a subgradient approach is considered, with the restricted problem (7} having restricted Lagrangian relaxation subproblems 
 
 $$
-\max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}.
+\max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\}.
 $$
 
 Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item with capacity used, $r$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $\mathbf{y}$ and $\lambda$ is defined as in \cite{Fomeni-Letchford} using 
 
 $$
-g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \\{k\\}}p_{kj},
+g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \{k\}}p_{kj},
 $$
 
 which is the profit of including item $k$ with capacity used $r$. A viable rollout approach introduces approximate costs-to-go function 
 
-\begin{equation*}
-\tilde{J}(\mathbf{y}) = \max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}
+$$
+\tilde{J}(\mathbf{y}) = \max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\}
 $$
 
 which is an upper bound on (7}, so that approximate $Q-$factors 
@@ -134,7 +134,7 @@ Some remarks with respect to the proposed rollout algorithm are in order. First 
 Data is generated as normally done within the context of QKP, and follows closely the description provided in \cite{Fomeni-Letchford}. Precisely, the profits, 
 
 $$
-p_{ij} \sim \begin{cases}0 & \text{with probability} 1-\Delta, \\\\ \mathcal{U}\\{1,\ldots,100\\} & \text{with probability } \Delta\end{cases}
+p_{ij} \sim \begin{cases}0 & \text{with probability} 1-\Delta, \\\\ \mathcal{U}\{1,\ldots,100\} & \text{with probability } \Delta\end{cases}
 $$
 
 for each $i=1\ldots,n$ and $j=1,\ldots,n$, where $\Delta$ is referred to as the **density**. The density, $\Delta$, is particularly important for determining the difficulty of the problem instance in consideration. For larger values of $\Delta$, the impact of its effects is observed through the objective function, in which a larger $\Delta$ may yield an objective function with greatly many more terms. Consequently, this entails that there more likely will be many interactions that will need to be considered when optimizing, therein resulting in a significantly more challenging problem. On the other hand, the remaining data $w_{i} \sim \mathcal{U}\{1,\ldots,n\}$ for each $i$, whereas $C \sim \mathcal{U}\{n,\ldots,\sum_{i=1}^{n}w_{i}\}$.
