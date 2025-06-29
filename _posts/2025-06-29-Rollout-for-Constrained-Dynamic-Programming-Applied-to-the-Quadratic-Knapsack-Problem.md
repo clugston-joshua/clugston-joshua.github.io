@@ -60,15 +60,15 @@ To obtain an approximation for the original problem, it is then necessary to con
 
 Taking the minimum over $\lambda\in \mathbb{R}_{\geq 0}$ in the preceding expression (4) will ultimately yield the solution to QKP, though minimization of (4) is with respect to a non-smooth objective function due the presence of integer variables, so standard methods such as gradient ascent or Newton's method cannot be applied outright in this context. Instead, a basic method which may be used for maximizing is the so called \textit{subgradient method}, whereby subgradients 
 
-$$
+\begin{equation}
 \psi(\mathbf{x}) = C - \sum_{i=1}^{n}w_{i}x_{i}
-$$
+\end{equation}
 
 are introduced, and an approach similar to gradient ascent is taken by iteratively considering multiplier updates
 
-$$
+\begin{equation}
 \lambda^{k+1} = \lambda^{k}+s^{k}\psi(\mathbf{x}^{k})
-$$
+\end{equation}
 
 for all $k\in \mathbb{Z}_{\geq 0}$. Within each multiplier update, a previous solution $\mathbf{x}$ is obtained by solving (4), and subgradients are scaled according to a positive steps size $s^{k}$, which can be defined in multiple ways. Particularly, in what follows, $s^{k} = s^{0}$ for some $s^{0}\in\mathbb{R}$ for all $k$. The benefit of considering this approach is that, while solving (2a)-(2g) directly using common methods based on branch-and-bound in the worst case are exponential, solving instead with the subgradient method may be less computationally demanding within this context, especially for difficult problems of reasonably large size.  
 
@@ -78,33 +78,33 @@ for all $k\in \mathbb{Z}_{\geq 0}$. Within each multiplier update, a previous so
 \label{method}
 By considering $r \in [C]$, $k\in [n]$, the original problem is restricted and written as:
 
-$$
+\begin{equation}
 \max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} : \sum_{i=1}^{k}w_{i}x_{i} = r,\ \mathbf{x}\in\mathbb{B}^{k}\right\},
-$$
+\end{equation}
 
 where $k$ denotes the current item's index and $r$ denotes the current amount of remaining space in the knapsack when considering the $k$th item. Then, similar to before, a subgradient approach is considered, with the restricted problem (7) having restricted Lagrangian relaxation subproblems 
 
-$$
+\begin{equation}
 \max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\}.
-$$
+\end{equation}
 
 Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item with capacity used, $r$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $\mathbf{y}$ and $\lambda$ is defined as in \cite{Fomeni-Letchford} using 
 
-$$
+\begin{equation}
 g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \{k\}}p_{kj},
-$$
+\end{equation}
 
 which is the profit of including item $k$ with capacity used $r$. A viable rollout approach introduces approximate costs-to-go function 
 
-$$
+\begin{equation}
 \tilde{J}(\mathbf{y}) = \max\left\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\}
-$$
+\end{equation}
 
 which is an upper bound on (7), so that approximate $Q-$factors 
 
-$$
+\begin{equation}
 \tilde{Q}(\mathbf{y},u) = g(\mathbf{y},u) + \tilde{J}(\mathbf{y}),
-$$
+\end{equation}
 
 with $u \in \mathcal{U}(\mathbf{y})=:\{0,1\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
@@ -131,9 +131,9 @@ Some remarks with respect to the proposed rollout algorithm are in order. First 
 \label{data}
 Data is generated as normally done within the context of QKP, and follows closely the description provided in \cite{Fomeni-Letchford}. Precisely, the profits, 
 
-$$
+\begin{equation}
 p_{ij} \sim \begin{cases}0 & \text{with probability} 1-\Delta, \\\\ \mathcal{U}\{1,\ldots,100\} & \text{with probability } \Delta\end{cases}
-$$
+\end{equation}
 
 for each $i=1\ldots,n$ and $j=1,\ldots,n$, where $\Delta$ is referred to as the *density*. The density, $\Delta$, is particularly important for determining the difficulty of the problem instance in consideration. For larger values of $\Delta$, the impact of its effects is observed through the objective function, in which a larger $\Delta$ may yield an objective function with greatly many more terms. Consequently, this entails that there more likely will be many interactions that will need to be considered when optimizing, therein resulting in a significantly more challenging problem. On the other hand, the remaining data $w_{i} \sim \mathcal{U}\{1,\ldots,n\}$ for each $i$, whereas $C \sim \mathcal{U}\{n,\ldots,\sum_{i=1}^{n}w_{i}\}$.
 
@@ -142,9 +142,9 @@ Comparison was made between the proposed rollout algorithm with base policy as d
 
 To compare performance, a "gap" is reported for the proposed rollout method which depends on the solution obtained by CPLEX in each case. Instead of using a gap to determine performance of the rollout method in the traditional sense, the idea is to compare the solution obtained by the proposed rollout method with the solution obtained by the exact method used by CPLEX. Particularly, the gap reported is computed according to
 
-$$
+\begin{equation}
 \texttt{Gap} = \frac{|z^{r}-z^{c}|}{z^{c}},
-$$
+\end{equation}
 
 where the objective value for rollout, $z^{r}$, and the objective value for CPLEX, $z^{c}$, are acquired at termination throughout. Seeing as a time limit is imposed in the McCormick case, the average gap across 10 runs of solving is reported, as opposed to when CPLEX is used to solve (1a)-(1c) directly. The reason for this inclusion is a consequence of the fact that CPLEX may not terminate within the prescribed time limit, as was observed on several runs during numerical experiments. Regardless, across all comparisons made, numerical values such as the number of seconds needed for termination and gap at termination, are reported as the sample average over 10 runs for each method. 
 
