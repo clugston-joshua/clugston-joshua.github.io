@@ -90,13 +90,13 @@ $$
 \max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}.
 $$
 
-Let the triple $`\mathbf{y} = (k,r,S)`$ denote the current state at the $`k`$th item with capacity used, $`r`$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $`\mathbf{y}`$ and $`\lambda`$ is defined as in \cite{Fomeni-Letchford} using 
+Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item with capacity used, $r$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $\mathbf{y}$ and $\lambda$ is defined as in \cite{Fomeni-Letchford} using 
 
 $$
 g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \\{k\\}}p_{kj},
 $$
 
-which is the profit of including item $`k`$ with capacity used $`r`$. A viable rollout approach introduces approximate costs-to-go function 
+which is the profit of including item $k$ with capacity used $r$. A viable rollout approach introduces approximate costs-to-go function 
 
 \begin{equation*}
 \tilde{J}(\mathbf{y}) = \max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}
@@ -108,7 +108,7 @@ $$
 \tilde{Q}(\mathbf{y},u) = g(\mathbf{y},u) + \tilde{J}(\mathbf{y}),
 $$
 
-with $`u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}`$ such that $`u = 1`$ if item $k$ is included in the knapsack while $`w_{k}\leq r`$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
+with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
 | :--------------------------------------------------: |
 |*Rollout for QKP|
@@ -127,7 +127,7 @@ with $`u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}`$ such that $`u = 1`$ if item $k
 | 11: & \textbf{end} \\
 | :--------------------------------------------------: |
 
-Some remarks with respect to the proposed rollout algorithm are in order. First of all, it is important to note that in the **Rollout for QKP** algorithm shown in the preceding, $`\hat{\mathbf{y}} = (k,r,\hat{S})`$, with $`\hat{S}\subseteq S`$ denoting the set of feasible item indices for the current state. Second, lines three and four are performed synchronously, for which computation of $\tilde{i}$ is performed and the value $\mathbf{x}^{k}$ is simultaneously attained. Third, it is clear that the algorithm performance is largely dependent on the difficulty of the embedded optimization problem conducted on line four. Therefore, it is important that a function which is efficiently computed be defined as the approximate cost-to-go function to ensure adequate performance with respect to computational speed. Finally, given the wide applicability of subgradient methods applied to non-convex functionals and rollout to combinatorial problems, the \textbf{Rollout for QKP} algorithm is fairly general, and slight modification to the algorithm may still be seen as fruitful for approximating the solutions of other MINLPs. With respect to this latter point, however, it is noted that generally a limitation of the subgradient method is that it can under perform when compared to other techniques for optimizing non-smooth functionals. Future work may instead introduce alternative means for updating either the multipliers or $\mathbf{x}^{k}$ to further improve performance of the proposed algorithm. Alternative techniques pertaining to the former may explore using bundle methods in place of traditional subgradient methods, for instance.
+Some remarks with respect to the proposed rollout algorithm are in order. First of all, it is important to note that in the **Rollout for QKP** algorithm shown in the preceding, $\hat{\mathbf{y}} = (k,r,\hat{S})$, with $\hat{S}\subseteq S$ denoting the set of feasible item indices for the current state. Second, lines three and four are performed synchronously, for which computation of $\tilde{i}$ is performed and the value $\mathbf{x}^{k}$ is simultaneously attained. Third, it is clear that the algorithm performance is largely dependent on the difficulty of the embedded optimization problem conducted on line four. Therefore, it is important that a function which is efficiently computed be defined as the approximate cost-to-go function to ensure adequate performance with respect to computational speed. Finally, given the wide applicability of subgradient methods applied to non-convex functionals and rollout to combinatorial problems, the \textbf{Rollout for QKP} algorithm is fairly general, and slight modification to the algorithm may still be seen as fruitful for approximating the solutions of other MINLPs. With respect to this latter point, however, it is noted that generally a limitation of the subgradient method is that it can under perform when compared to other techniques for optimizing non-smooth functionals. Future work may instead introduce alternative means for updating either the multipliers or $\mathbf{x}^{k}$ to further improve performance of the proposed algorithm. Alternative techniques pertaining to the former may explore using bundle methods in place of traditional subgradient methods, for instance.
 
 ### Data Generation
 \label{data}
@@ -137,7 +137,7 @@ $$
 p_{ij} \sim \begin{cases}0 & \text{with probability} 1-\Delta, \\\\ \mathcal{U}\\{1,\ldots,100\\} & \text{with probability } \Delta\end{cases}
 $$
 
-for each $`i=1\ldots,n`$ and $`j=1,\ldots,n`$, where $`\Delta`$ is referred to as the **density**. The density, $`\Delta`$, is particularly important for determining the difficulty of the problem instance in consideration. For larger values of $\Delta$, the impact of its effects is observed through the objective function, in which a larger $\Delta$ may yield an objective function with greatly many more terms. Consequently, this entails that there more likely will be many interactions that will need to be considered when optimizing, therein resulting in a significantly more challenging problem. On the other hand, the remaining data $`w_{i} \sim \mathcal{U}\{1,\ldots,n\}`$ for each $`i`$, whereas $`C \sim \mathcal{U}\{n,\ldots,\sum_{i=1}^{n}w_{i}\}`$.
+for each $i=1\ldots,n$ and $j=1,\ldots,n$, where $\Delta$ is referred to as the **density**. The density, $\Delta$, is particularly important for determining the difficulty of the problem instance in consideration. For larger values of $\Delta$, the impact of its effects is observed through the objective function, in which a larger $\Delta$ may yield an objective function with greatly many more terms. Consequently, this entails that there more likely will be many interactions that will need to be considered when optimizing, therein resulting in a significantly more challenging problem. On the other hand, the remaining data $w_{i} \sim \mathcal{U}\{1,\ldots,n\}$ for each $i$, whereas $C \sim \mathcal{U}\{n,\ldots,\sum_{i=1}^{n}w_{i}\}$.
 
 ## Numerical Results
 Comparison was made between the proposed rollout algorithm with base policy as defined in \textbf{Section \ref{method}}, and by using CPLEX version 1.0.3 to solve the original problem directly. Additionally, a further comparison between the proposed rollout algorithm and solving (2a}-(2g} directly using CPLEX was made. For each comparison, numerical experiments were performed using Julia on a 2020 M1 Macbook Pro with 16 GB of RAM. Data were selected according to \textbf{Section \ref{data}}, with step size $s^{0} = 1$ throughout, total number of items and density being considered in the CPLEX comparison for (1a)-(1c) being $n\in \{50,100,150\}$ and $\Delta \in \\{0.8,0.65,0.5\\}$, respectively, and $n\in \{50,100,200\}$ and $\Delta \in \\{0.8,0.65,0.8\\}$ for the case when CPLEX was applied to solve (2a}-(2g}. Default parameters for CPLEX are used for all numerical experiments, with the exception of the time limit in the comparison against solving (2a}-(2g} using CPLEX. In this comparison, a time limit of 600 seconds was imposed.  
