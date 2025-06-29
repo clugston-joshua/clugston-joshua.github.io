@@ -56,7 +56,7 @@ is obtained, in which $\lambda$ is referred to as a *Lagrange multiplier*.
 To obtain an approximation for the original problem, it is then necessary to consider solving
 
 \begin{equation}
-\text{maximize }\mathcal{L}(\mathbf{x},\lambda),\ \text{subject to} \mathbf{x}\in\mathbb{B}^{n}.
+\text{maximize }\mathcal{L}(\mathbf{x},\lambda),\ \text{subject to } \mathbf{x}\in\mathbb{B}^{n}.
 \end{equation}
 
 Taking the minimum over $\lambda\in \mathbb{R}_{\geq 0}$ in the preceding expression (4) will ultimately yield the solution to QKP, though minimization of (4) is with respect to a non-smooth objective function due the presence of integer variables, so standard methods such as gradient ascent or Newton's method cannot be applied outright in this context. Instead, a basic method which may be used for maximizing is the so called \textit{subgradient method}, whereby subgradients 
