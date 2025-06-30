@@ -109,22 +109,22 @@ which is an upper bound on (7), so that approximate $Q-$factors
 
 with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
-| :--------------------------------------------------: |
+| -------------------------------------------------- |
 |*Rollout for QKP|
-| :--------------------------------------------------: |
-| 0: | Initialize $\lambda^{0}$, $s^{0}$, $S\leftarrow [n]$, $r\leftarrow C$\\
-| 1: & \textbf{for} $k\in [n]$ \textbf{do} \\
-| 2: & \hspace{.75cm} $\hat{S} =\{i\in S: w_{i}\leq r\}$\\
-| 3: & \hspace{.75cm} $\displaystyle\tilde{i} = \argmax_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})$\\
-| 4: &\hspace{.75cm} $\displaystyle\mathbf{x}^{k} = \argmax_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})$\\
-| 5: & \hspace{.75cm} $g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}$\\
-| 6: & \hspace{.75cm} $\lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k})$\\
-| 7: & \hspace{.75cm} $S = S\setminus\{\tilde{i}\}$, $r = r - w_{\tilde{i}}$\\
-| 8: & \hspace{.75cm} \textbf{if} $r = 0$ or $S = \varnothing$\\
-| 9: & \hspace{1.25cm} \textbf{return} $\displaystyle\sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}$\\
-| 10: & \hspace{.75cm} \textbf{end}\\
-| 11: & \textbf{end} \\
-| :--------------------------------------------------: |
+| :-------------------------------------------------- |
+| 0: | Initialize $\lambda^{0}$, $s^{0}$, $S\leftarrow [n]$, $r\leftarrow C$ |
+| 1: | **for** $k\in [n]$ **do** |
+| 2: |  $\hat{S} =\{i\in S: w_{i}\leq r\}$|
+| 3: |  $\displaystyle\tilde{i} = \argmax_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})$ |
+| 4: |  $\displaystyle\mathbf{x}^{k} = \argmax_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})$ |
+| 5: |  $g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}$ |
+| 6: |  $\lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k})$ |
+| 7: |  $S = S\setminus\{\tilde{i}\}$, $r = r - w_{\tilde{i}}$ |
+| 8: |  **if** $r = 0$ or $S = \varnothing$ |
+| 9: | **return** $\displaystyle\sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}$ |
+| 10: | **end** |
+| 11: | **end** |
+| -------------------------------------------------- |
 
 Some remarks with respect to the proposed rollout algorithm are in order. First of all, it is important to note that in the **Rollout for QKP** algorithm shown in the preceding, $\hat{\mathbf{y}} = (k,r,\hat{S})$, with $\hat{S}\subseteq S$ denoting the set of feasible item indices for the current state. Second, lines three and four are performed synchronously, for which computation of $\tilde{i}$ is performed and the value $\mathbf{x}^{k}$ is simultaneously attained. Third, it is clear that the algorithm performance is largely dependent on the difficulty of the embedded optimization problem conducted on line four. Therefore, it is important that a function which is efficiently computed be defined as the approximate cost-to-go function to ensure adequate performance with respect to computational speed. Finally, given the wide applicability of subgradient methods applied to non-convex functionals and rollout to combinatorial problems, the **Rollout for QKP** algorithm is fairly general, and slight modification to the algorithm may still be seen as fruitful for approximating the solutions of other MINLPs. With respect to this latter point, however, it is noted that generally a limitation of the subgradient method is that it can under perform when compared to other techniques for optimizing non-smooth functionals. Future work may instead introduce alternative means for updating either the multipliers or $\mathbf{x}^{k}$ to further improve performance of the proposed algorithm. Alternative techniques pertaining to the former may explore using bundle methods in place of traditional subgradient methods, for instance.
 
