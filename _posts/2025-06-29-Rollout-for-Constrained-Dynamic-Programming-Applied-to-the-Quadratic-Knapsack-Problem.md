@@ -110,7 +110,7 @@ which is an upper bound on (7), so that approximate $Q-$factors
 with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
 | -------------------------------------------------- |
-|*Rollout for QKP|
+|*Rollout for QKP** |
 | :-------------------------------------------------- |
 | 0: | Initialize $\lambda^{0}$, $s^{0}$, $S\leftarrow [n]$, $r\leftarrow C$ |
 | 1: | **for** $k\in [n]$ **do** |
@@ -149,6 +149,7 @@ To compare performance, a "gap" is reported for the proposed rollout method whic
 
 where the objective value for rollout, $z^{r}$, and the objective value for CPLEX, $z^{c}$, are acquired at termination throughout. Seeing as a time limit is imposed in the McCormick case, the average gap across 10 runs of solving is reported, as opposed to when CPLEX is used to solve (1a)-(1c) directly. The reason for this inclusion is a consequence of the fact that CPLEX may not terminate within the prescribed time limit, as was observed on several runs during numerical experiments. Regardless, across all comparisons made, numerical values such as the number of seconds needed for termination and gap at termination, are reported as the sample average over 10 runs for each method. 
 
+$$
 \begin{table}[H]
 \centering 
 \caption{QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.}
@@ -165,8 +166,9 @@ $\mathbf{n}$ &$\boldsymbol{\Delta}$&\textbf{Seconds}&\textbf{Gap}&\textbf{Second
 \end{tabular}
 \label{results-table1}
 \end{table}
+$$
 
-
+$$
 \begin{table}[H]
 \centering 
 \caption{QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.}
@@ -183,7 +185,7 @@ $\mathbf{n}$ &$\boldsymbol{\Delta}$&\textbf{Seconds}&\textbf{Gap}&\textbf{Second
 \end{tabular}
 \label{results-table2}
 \end{table}
-
+$$
 From \textbf{Table \ref{results-table1}} it is seen that the rollout approach consistently outperforms CPLEX in terms of computational speed, while simultaneously obtaining similar quality solutions for each instance considered. However, when comparing rollout with the same moderately sized instances of QKP to the McCormick solution, it is instead observed that CPLEX outperforms rollout on average. Because the improvement over rollout is seemingly minor for the $n=50$ and $n=100$ cases, a comparison was further made for a large and difficult instance to see if McCormick's solution with CPLEX scales. In doing so, it was observed that, on average, rollout instead outperformed McCormick, with the variance of both the final solution time between solutions being much larger for McCormick than rollout. In particular, there were many instances in the $n=200$ case where McCormick reached the time limit before admitting a global solution, whereas rollout consistently terminated with a comparable solution to McCormick with around 200 seconds on average. 
 
 ## Conclusion
