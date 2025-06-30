@@ -20,7 +20,7 @@ $$
 \begin{alignat}{1}
 \text{maximize }\ & \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}x_{i}x_{j}, \\
 \text{subject to }\ & \sum_{i=1}^{n}w_{i}x_{i} \leq C, \\
-& \mathbf{x}\in \\{0,1\\}^{n} =: \mathbb{B}^{n}. 
+& \mathbf{x}\in \{0,1\}^{n} =: \mathbb{B}^{n}. 
 \end{alignat}
 $$
 
