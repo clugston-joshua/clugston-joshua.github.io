@@ -173,29 +173,6 @@ where the objective value for rollout, $z^{r}$, and the objective value for CPLE
   </tr>
 </table>
 
-|----------------------------------|
-| | Rollout | CPLEX |
-|-----------------------------------|
-|$\mathbf{n}$ | $\boldsymbol{\Delta}$ | Seconds | Gap | Seconds |
-|----------------------------------|
-| 50 | 0.8 | 2.985 | 0.089 | 35.346 | 
-| 100 | 0.65 | 64.284 | 0.058 | 147.883 |
-| 150 | 0.5 | 57.799 | 0.071 | 121.692 |
-|----------------------------------|
-: QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.
-
-
-|----------------------------------|
-| | Rollout | CPLEX |
-| $\mathbf{n}$ | $\boldsymbol{\Delta}$ | Seconds | Gap | Seconds |
-|----------------------------------|
-| 50 | 0.8  | 4.139 | 0.104 | 1.147 | 0.01 |
-| 100 | 0.65 | 16.562 | 0.077 | 14.351 | 0.01 |
-| 200 | 0.8 | 206.114 | 0.108 | 342.467 | 0.383 |
-|-----------------------------------------|
-: QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.
-
-
 <table>
     <caption>QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.</caption>
   <tr>
