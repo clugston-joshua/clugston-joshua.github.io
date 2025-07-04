@@ -199,19 +199,19 @@ where the objective value for rollout, $z^{r}$, and the objective value for CPLE
 <table>
     <caption>QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.</caption>
   <tr>
-    <td colspan = "2"> </td> <td colspan ="2"> <strong>Rollout</strong> </td> <td colspan ="1"> <strong>CPLEX</strong> </td> 
+    <td colspan = "2"> </td> <td colspan ="2"> <strong>Rollout</strong> </td> <td colspan ="2"> <strong>CPLEX</strong> </td> 
   </tr>
   <tr>
-    <td> $n$ </td> <td> $\boldsymbol{\Delta}$ </td> <td><strong>Seconds</strong> </td> <td><strong>Gap</strong></td> <td><strong>Seconds</strong></td>
+    <td> $n$ </td> <td> $\boldsymbol{\Delta}$ </td> <td><strong>Seconds</strong> </td> <td><strong>Gap</strong></td> <td><strong>Seconds</strong></td> <td><strong>Gap</strong></td>
   </tr>
   <tr>
-    <td>50</td> <td>0.8</td> <td>0.104</td> <td>1.147</td> <td>0.01</td> 
+    <td>50</td> <td>0.8</td> <td>0.104</td> <td>1.147</td> <td>0.01</td> <td></td>
   </tr>
   <tr>
-    <td>100</td> <td>16.562</td> <td>0.077</td> <td>14.251</td> <td>0.01</td> 
+    <td>100</td> <td>16.562</td> <td>0.077</td> <td>14.251</td> <td>0.01</td> <td></td> 
   </tr>
   <tr>
-    <td>200</td> <td>206.144</td> <td>0.108</td> <td>342.467</td> <td>0.383</td>
+    <td>200</td> <td>206.144</td> <td>0.108</td> <td>342.467</td> <td>0.383</td> <td></td>
   </tr>
 </table>
 
