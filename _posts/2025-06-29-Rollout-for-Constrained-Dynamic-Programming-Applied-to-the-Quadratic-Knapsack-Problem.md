@@ -116,12 +116,12 @@ $$
 \hline
 0: & \text{Initialize }\ \lambda^{0},\ s^{0},\ S\leftarrow [n],\ r\leftarrow C\\
 1: & \textbf{for}\ k\in [n]\ \textbf{do} \\
-2: & \hspace{.75cm} \hat{S} = \\{i\in S: w_{i}\leq r\\}\\
+2: & \hspace{.75cm} \hat{S} = \Set{i\in S: w_{i}\leq r\}\\
 3: & \hspace{.75cm} \tilde{i} = \text{arg}\max_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})\\
 4: & \hspace{.75cm} \mathbf{x}^{k} = \text{arg}\max_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})\\
 5: & \hspace{.75cm} g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}\\
 6: & \hspace{.75cm} \lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k}) \\
-7: & \hspace{.75cm} S = S\setminus\\{\tilde{i}\\},\ r = r - w_{\tilde{i}} \\
+7: & \hspace{.75cm} S = S\setminus\Set{\tilde{i}\},\ r = r - w_{\tilde{i}} \\
 8: & \hspace{.75cm} \textbf{if}\ r = 0\ \text{or}\ S = \varnothing\\
 9: & \hspace{1.25cm} \textbf{return}\ \sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}\\
 10: & \hspace{.75cm} \textbf{end}\\
