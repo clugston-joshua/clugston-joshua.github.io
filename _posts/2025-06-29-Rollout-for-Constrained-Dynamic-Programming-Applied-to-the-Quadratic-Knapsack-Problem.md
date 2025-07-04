@@ -110,7 +110,7 @@ which is an upper bound on (7), so that approximate $Q-$factors
 with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
 
-$$
+\begin{equation}
 \begin{array}{ll}
 \hline\hline
 \textbf{Rollout for QKP} &\\
@@ -129,7 +129,7 @@ $$
 11: & \textbf{end} \\
 \hline\hline
 \end{array}
-$$
+\end{equation}
 
 Some remarks with respect to the proposed rollout algorithm are in order. First of all, it is important to note that in the **Rollout for QKP** algorithm shown in the preceding, $\hat{\mathbf{y}} = (k,r,\hat{S})$, with $\hat{S}\subseteq S$ denoting the set of feasible item indices for the current state. Second, lines three and four are performed synchronously, for which computation of $\tilde{i}$ is performed and the value $\mathbf{x}^{k}$ is simultaneously attained. Third, it is clear that the algorithm performance is largely dependent on the difficulty of the embedded optimization problem conducted on line four. Therefore, it is important that a function which is efficiently computed be defined as the approximate cost-to-go function to ensure adequate performance with respect to computational speed. Finally, given the wide applicability of subgradient methods applied to non-convex functionals and rollout to combinatorial problems, the **Rollout for QKP** algorithm is fairly general, and slight modification to the algorithm may still be seen as fruitful for approximating the solutions of other MINLPs. With respect to this latter point, however, it is noted that generally a limitation of the subgradient method is that it can under perform when compared to other techniques for optimizing non-smooth functionals. Future work may instead introduce alternative means for updating either the multipliers or $\mathbf{x}^{k}$ to further improve performance of the proposed algorithm. Alternative techniques pertaining to the former may explore using bundle methods in place of traditional subgradient methods, for instance.
 
