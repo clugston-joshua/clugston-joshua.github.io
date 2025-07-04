@@ -155,7 +155,7 @@ To compare performance, a "gap" is reported for the proposed rollout method whic
 where the objective value for rollout, $z^{r}$, and the objective value for CPLEX, $z^{c}$, are acquired at termination throughout. Seeing as a time limit is imposed in the McCormick case, the average gap across 10 runs of solving is reported, as opposed to when CPLEX is used to solve (1a)-(1c) directly. The reason for this inclusion is a consequence of the fact that CPLEX may not terminate within the prescribed time limit, as was observed on several runs during numerical experiments. Regardless, across all comparisons made, numerical values such as the number of seconds needed for termination and gap at termination, are reported as the sample average over 10 runs for each method. 
 
 <table>
-  <caption>QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.</caption>
+  <caption>Table 1: QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.</caption>
   <tr>
     <td colspan = "2"> </td> <td colspan ="2"> <strong>Rollout</strong> </td> <td colspan ="1"> <strong>CPLEX</strong> </td> 
   </tr>
@@ -174,7 +174,7 @@ where the objective value for rollout, $z^{r}$, and the objective value for CPLE
 </table>
 
 <table>
-    <caption>QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.</caption>
+    <caption>Table 2: QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.</caption>
   <tr>
     <td colspan = "2"> </td> <td colspan ="2"> <strong>Rollout</strong> </td> <td colspan ="2"> <strong>CPLEX</strong> </td> 
   </tr>
