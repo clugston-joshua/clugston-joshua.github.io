@@ -109,38 +109,21 @@ which is an upper bound on (7), so that approximate $Q-$factors
 
 with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is included in the knapsack while $w_{k}\leq r$, and $u = 0$ otherwise. Using the aforementioned ingredients, a proposed rollout algorithm is therefore described in the following pseudocode. 
 
-| -------------------------------------------------- |
-|*Rollout for QKP** |
-| :-------------------------------------------------- |
-| 0: | Initialize $\lambda^{0}$, $s^{0}$, $S\leftarrow [n]$, $r\leftarrow C$ |
-| 1: | **for** $k\in [n]$ **do** |
-| 2: |  $\hat{S} =\{i\in S: w_{i}\leq r\}$|
-| 3: |  $\displaystyle\tilde{i} = \text{arg}\max_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})$ |
-| 4: |  $\displaystyle\mathbf{x}^{k} = \text{arg}\max_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})$ |
-| 5: |  $g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}$ |
-| 6: |  $\lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k})$ |
-| 7: |  $S = S\setminus\{\tilde{i}\}$, $r = r - w_{\tilde{i}}$ |
-| 8: |  **if** $r = 0$ or $S = \varnothing$ |
-| 9: | **return** $\displaystyle\sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}$ |
-| 10: | **end** |
-| 11: | **end** |
-| -------------------------------------------------- |
 
 $$
 \begin{array}{ll}
 \hline\hline
-\multicolumn{2}{l}{\text{Rollout for QKP}}\\
 \hline
-0: & \text{Initialize } $\lambda^{0}$, $s^{0}$, $S\leftarrow [n]$, $r\leftarrow C$\\
-1: & \text{**for**} k\in [n]$ \text{**do**} \\
+0: & \text{Initialize }\ \lambda^{0},\ s^{0},\ S\leftarrow [n],\ r\leftarrow C\\
+1: & \text{**for**}\ k\in [n]\ \text{**do**} \\
 2: & \hspace{.75cm} \hat{S} = \\{i\in S: w_{i}\leq r\\}\\
 3: & \hspace{.75cm} \tilde{i} = \text{arg}\max_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})\\
 4: & \hspace{.75cm} \mathbf{x}^{k} = \text{arg}\max_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})\\
 5: & \hspace{.75cm} g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}\\
 6: & \hspace{.75cm} \lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k}) \\
-7: & \hspace{.75cm} S = S\setminus\{\tilde{i}\}$, $r = r - w_{\tilde{i}} \\
-8: & \hspace{.75cm} \text{**if**} r = 0 or S = \varnothing\\
-9: & \hspace{1.25cm} \text{**return**} \sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}\\
+7: & \hspace{.75cm} S = S\setminus\\{\tilde{i}\\},\ r = r - w_{\tilde{i}} \\
+8: & \hspace{.75cm} \text{**if**}\ r = 0\ \text{or}\ S = \varnothing\\
+9: & \hspace{1.25cm} \text{**return**}\ \sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}\\
 10: & \hspace{.75cm} \text{**end**}\\
 11: & \text{**end**} \\
 \hline\hline
@@ -178,9 +161,9 @@ $$
 \hline
 \mathbf{n} & \boldsymbol{\Delta} &\text{Seconds}&\text{Gap}&\text{Seconds}\\
 \hline
-50&$0.8$&2.985&0.089&35.346\\
-100&$0.65$&64.284&0.058&147.883\\
-150&$0.5$&57.799&0.071&121.692\\
+50& 0.8 &2.985&0.089&35.346\\
+100& 0.65 &64.284&0.058&147.883\\
+150& 0.5 &57.799&0.071&121.692\\
 \hline
 \end{array}
 $$
@@ -194,9 +177,9 @@ $$
 \hline
 \mathbf{n} & \boldsymbol{\Delta} &\text{Seconds}&\textbf{Gap}&\textbf{Seconds} & \text{Gap}\\
 \hline
-50&$0.8$&4.139&0.104&1.147&0.01 \\
-100&$0.65$&16.562&0.077&14.351&0.01 \\
-200&$0.8$&206.114&0.108& 342.467& 0.383 \\
+50& 0.8 &4.139&0.104&1.147&0.01 \\
+100& 0.65 &16.562&0.077&14.351&0.01 \\
+200& 0.8 &206.114&0.108& 342.467& 0.383 \\
 \hline
 \end{array}
 $$
