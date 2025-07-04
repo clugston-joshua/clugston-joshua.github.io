@@ -113,6 +113,7 @@ with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is
 $$
 \begin{array}{ll}
 \hline\hline
+\textbf{Something here} &\\
 \hline
 0: & \text{Initialize }\ \lambda^{0},\ s^{0},\ S\leftarrow [n],\ r\leftarrow C\\
 1: & \textbf{for}\ k\in [n]\ \textbf{do} \\
