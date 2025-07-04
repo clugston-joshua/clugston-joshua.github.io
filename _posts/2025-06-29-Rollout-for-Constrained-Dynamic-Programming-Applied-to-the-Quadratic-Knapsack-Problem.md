@@ -115,8 +115,8 @@ with $u \in \mathcal{U}(\mathbf{y})=:\\{0,1\\}$ such that $u = 1$ if item $k$ is
 | 0: | Initialize $\lambda^{0}$, $s^{0}$, $S\leftarrow [n]$, $r\leftarrow C$ |
 | 1: | **for** $k\in [n]$ **do** |
 | 2: |  $\hat{S} =\{i\in S: w_{i}\leq r\}$|
-| 3: |  $\displaystyle\tilde{i} = \argmax_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})$ |
-| 4: |  $\displaystyle\mathbf{x}^{k} = \argmax_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})$ |
+| 3: |  $\displaystyle\tilde{i} = \text{arg}\max_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})$ |
+| 4: |  $\displaystyle\mathbf{x}^{k} = \text{arg}\max_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})$ |
 | 5: |  $g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}$ |
 | 6: |  $\lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k})$ |
 | 7: |  $S = S\setminus\{\tilde{i}\}$, $r = r - w_{\tilde{i}}$ |
@@ -150,10 +150,8 @@ To compare performance, a "gap" is reported for the proposed rollout method whic
 where the objective value for rollout, $z^{r}$, and the objective value for CPLEX, $z^{c}$, are acquired at termination throughout. Seeing as a time limit is imposed in the McCormick case, the average gap across 10 runs of solving is reported, as opposed to when CPLEX is used to solve (1a)-(1c) directly. The reason for this inclusion is a consequence of the fact that CPLEX may not terminate within the prescribed time limit, as was observed on several runs during numerical experiments. Regardless, across all comparisons made, numerical values such as the number of seconds needed for termination and gap at termination, are reported as the sample average over 10 runs for each method. 
 
 $$
-\begin{table}[H]
-\centering 
-\caption{QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.}
-\begin{tabular}{|c|c|cc|c|}
+%\caption{QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.}
+\begin{array}{|c|c|cc|c|}
 \hline
 \multicolumn{2}{c|}{} &\multicolumn{2}{c|}{\textbf{Rollout}} & \multicolumn{1}{c}{\textbf{CPLEX}}\\
 \hline
@@ -163,15 +161,11 @@ $\mathbf{n}$ &$\boldsymbol{\Delta}$&\textbf{Seconds}&\textbf{Gap}&\textbf{Second
 100&$0.65$&64.284&0.058&147.883\\
 150&$0.5$&57.799&0.071&121.692\\
 \hline
-\end{tabular}
-\label{results-table1}
-\end{table}
+\end{array}
 $$
 
-$$
-\begin{table}[H]
-\centering 
-\caption{QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.}
+$$ 
+%\caption{QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.}
 \begin{tabular}{|c|c|cc|cc|}
 \hline
 \multicolumn{2}{c|}{} &\multicolumn{2}{c|}{\textbf{Rollout}} & \multicolumn{2}{c}{\textbf{McCormick}}\\
@@ -182,9 +176,7 @@ $\mathbf{n}$ &$\boldsymbol{\Delta}$&\textbf{Seconds}&\textbf{Gap}&\textbf{Second
 100&$0.65$&16.562&0.077&14.351&0.01\%\\
 200&$0.8$&206.114&0.108& 342.467& 0.383\%\\
 \hline
-\end{tabular}
-\label{results-table2}
-\end{table}
+\end{array}
 $$
 From \textbf{Table \ref{results-table1}} it is seen that the rollout approach consistently outperforms CPLEX in terms of computational speed, while simultaneously obtaining similar quality solutions for each instance considered. However, when comparing rollout with the same moderately sized instances of QKP to the McCormick solution, it is instead observed that CPLEX outperforms rollout on average. Because the improvement over rollout is seemingly minor for the $n=50$ and $n=100$ cases, a comparison was further made for a large and difficult instance to see if McCormick's solution with CPLEX scales. In doing so, it was observed that, on average, rollout instead outperformed McCormick, with the variance of both the final solution time between solutions being much larger for McCormick than rollout. In particular, there were many instances in the $n=200$ case where McCormick reached the time limit before admitting a global solution, whereas rollout consistently terminated with a comparable solution to McCormick with around 200 seconds on average. 
 
