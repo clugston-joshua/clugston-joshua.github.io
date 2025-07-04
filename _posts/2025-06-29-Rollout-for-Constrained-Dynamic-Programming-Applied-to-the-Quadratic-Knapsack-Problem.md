@@ -115,17 +115,17 @@ $$
 \hline\hline
 \hline
 0: & \text{Initialize }\ \lambda^{0},\ s^{0},\ S\leftarrow [n],\ r\leftarrow C\\
-1: & \text{**for**}\ k\in [n]\ \text{**do**} \\
+1: & \textbf{for}\ k\in [n]\ \textbf{do} \\
 2: & \hspace{.75cm} \hat{S} = \\{i\in S: w_{i}\leq r\\}\\
 3: & \hspace{.75cm} \tilde{i} = \text{arg}\max_{u\in\mathcal{U}(\hat{\mathbf{y}})}\tilde{Q}(\hat{\mathbf{y}})\\
 4: & \hspace{.75cm} \mathbf{x}^{k} = \text{arg}\max_{\mathbf{x}} \tilde{J}(\hat{\mathbf{y}})\\
 5: & \hspace{.75cm} g(\mathbf{x}^{k}) = r-\sum_{i=1}^{k}w_{i}x_{i}\\
 6: & \hspace{.75cm} \lambda^{k+1} = \lambda^{k} + s^{0}g(\mathbf{x}^{k}) \\
 7: & \hspace{.75cm} S = S\setminus\\{\tilde{i}\\},\ r = r - w_{\tilde{i}} \\
-8: & \hspace{.75cm} \text{**if**}\ r = 0\ \text{or}\ S = \varnothing\\
-9: & \hspace{1.25cm} \text{**return**}\ \sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}\\
-10: & \hspace{.75cm} \text{**end**}\\
-11: & \text{**end**} \\
+8: & \hspace{.75cm} \textbf{if}\ r = 0\ \text{or}\ S = \varnothing\\
+9: & \hspace{1.25cm} \textbf{return}\ \sum_{i\in S\setminus[n]}\sum_{j\in S\setminus[n]}p_{ij}\\
+10: & \hspace{.75cm} \textbf{end}\\
+11: & \textbf{end} \\
 \hline\hline
 \end{array}
 $$
@@ -188,6 +188,6 @@ $$
 From \textbf{Table \ref{results-table1}} it is seen that the rollout approach consistently outperforms CPLEX in terms of computational speed, while simultaneously obtaining similar quality solutions for each instance considered. However, when comparing rollout with the same moderately sized instances of QKP to the McCormick solution, it is instead observed that CPLEX outperforms rollout on average. Because the improvement over rollout is seemingly minor for the $n=50$ and $n=100$ cases, a comparison was further made for a large and difficult instance to see if McCormick's solution with CPLEX scales. In doing so, it was observed that, on average, rollout instead outperformed McCormick, with the variance of both the final solution time between solutions being much larger for McCormick than rollout. In particular, there were many instances in the $n=200$ case where McCormick reached the time limit before admitting a global solution, whereas rollout consistently terminated with a comparable solution to McCormick with around 200 seconds on average. 
 
 ## Conclusion
-As discussed in the previous section, rollout is comparable to solving (2a)-(2g) with CPLEX for QKP instance of moderate size and density, to large density. When considering large and difficult QKP instances, it is clear that rollout scales much better than solving (2a)-(2g) with CPLEX. Thus, rollout appears to be a viable option for a scalable algorithm which may be used to solve large-scale QKP instances. Given the clear improvement in computational speed, accuracy of the proposed approach could potentially be further improved by employing a multi-step lookahead rollout approach. Furthermore, given that McCormick outperforms rollout in some instances, a different base policy could be attempted in later work to improve the results observed. For instance, a potential base policy which may provide additional improvement would consider solving the LP relaxation of (2a)-(2g). Future work should then compare the performance of the proposed approach against other well-known approaches such as those introduced in \cite{Fomeni-Letchford} and \cite{FENNICH2024102}, as well as against the approach in which subgradient methods or the LP relaxation of (2a)-(2g) are used. A more extensive study across varying instances could also be conducted to provide more evidence toward the efficacy of each proposed approach.    
+As discussed in the previous section, rollout is comparable to solving (2a)-(2g) with CPLEX for QKP instances of moderate size and density, to large density. When considering large and difficult QKP instances, it is clear that rollout scales much better than solving (2a)-(2g) with CPLEX. Thus, rollout appears to be a viable option for a scalable algorithm which may be used to solve large-scale QKP instances. Given the clear improvement in computational speed, accuracy of the proposed approach could potentially be further improved by employing a multi-step lookahead rollout approach. Furthermore, given that McCormick outperforms rollout in some instances, a different base policy could be attempted in later work to improve the results observed. For instance, a potential base policy which may provide additional improvement would consider solving the LP relaxation of (2a)-(2g). Future work should then compare the performance of the proposed approach against other well-known approaches such as those introduced in \cite{Fomeni-Letchford} and \cite{FENNICH2024102}, as well as against the approach in which subgradient methods or the LP relaxation of (2a)-(2g) are used. A more extensive study across varying instances could also be conducted to provide more evidence toward the efficacy of each proposed approach.    
 
 ## References
