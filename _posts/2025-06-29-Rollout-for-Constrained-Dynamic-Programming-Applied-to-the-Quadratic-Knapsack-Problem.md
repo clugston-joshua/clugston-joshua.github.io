@@ -182,14 +182,14 @@ where the objective value for rollout, $z^{r}$, and the objective value for CPLE
     <td> $n$ </td> <td> $\boldsymbol{\Delta}$ </td> <td><strong>Seconds</strong> </td> <td><strong>Gap</strong></td> <td><strong>Seconds</strong></td> <td><strong>Gap</strong></td>
   </tr>
   <tr>
-    <td>50</td> <td>0.8</td> <td>0.104</td> <td>1.147</td> <td>0.01</td> <td></td>
+    <td>50</td> <td>0.8</td> <td>4.139</td> <td>0.104</td> <td>1.147</td> <td>0.01</td> 
   </tr>
   <tr>
-    <td>100</td> <td>16.562</td> <td>0.077</td> <td>14.251</td> <td>0.01</td> <td></td> 
+    <td>100</td> <td>0.65 </td> <td>16.562</td> <td>0.077</td> <td>14.351</td> <td>0.01</td>  
   </tr>
   <tr>
-    <td>200</td> <td>206.144</td> <td>0.108</td> <td>342.467</td> <td>0.383</td> <td></td>
-  </tr>
+    <td>200</td> <td>0.8</td> <td>206.144</td> <td>0.108</td> <td>342.467</td> <td>0.383</td> 
+  </tr>t
 </table>
 
 From **Table 1** it is seen that the rollout approach consistently outperforms CPLEX in terms of computational speed, while simultaneously obtaining similar quality solutions for each instance considered. However, when comparing rollout with the same moderately sized instances of QKP to the McCormick solution, it is instead observed that CPLEX outperforms rollout on average. Because the improvement over rollout is seemingly minor for the $n=50$ and $n=100$ cases, a comparison was further made for a large and difficult instance to see if McCormick's solution with CPLEX scales. In doing so, it was observed that, on average, rollout instead outperformed McCormick, with the variance of both the final solution time between solutions being much larger for McCormick than rollout. In particular, there were many instances in the $n=200$ case where McCormick reached the time limit before admitting a global solution, whereas rollout consistently terminated with a comparable solution to McCormick with around 200 seconds on average. 
