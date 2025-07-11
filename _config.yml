@@ -30,6 +30,7 @@ remote_theme: jekyll/minima@d4d779a
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
+ - jekyll-scholar
 
 # Uncomment the following setting if you wish to disable deprecation warnings
 #   from newer versions of sass converter. Adapt as required.
