@@ -83,6 +83,9 @@ minima:
     - title: LinkedIn Profile
       icon: linkedin
       url: "https://www.linkedin.com/in/joshua-clugston-7a20221a5/"
+    - title: Math Stack Exchange Profile
+      icon: math-stack-exchange
+      url: https://math.stackexchange.com/users/887187/jjcluu
     - title: Publications on Google Scholar
       icon: google-scholar
       url: "google.com"
