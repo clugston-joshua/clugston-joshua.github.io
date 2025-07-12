@@ -1,0 +1,38 @@
+name: Build Jekyll Site
+
+on:
+  push:
+    branches:
+      - main  # Change if your default branch is different
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout your repo code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Ruby environment
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1  # Or your preferred Ruby version
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      # Build the Jekyll site
+      - name: Build site
+        run: bundle exec jekyll build
+
+      # Upload the generated site (_site folder) as an artifact
+      - name: Upload built site
+        uses: actions/upload-artifact@v3
+        with:
+          name: site
+          path: _site
