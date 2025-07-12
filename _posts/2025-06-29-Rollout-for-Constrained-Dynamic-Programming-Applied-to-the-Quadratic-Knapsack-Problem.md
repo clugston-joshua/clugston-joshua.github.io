@@ -15,5 +15,3 @@ $$
 
 Specifically, in (1a)-(1c) above, $C$ is the available space in the knapsack, $w_{i}$ for $i=1,\ldots,n$ are non-negative weights associated with inluding item $i$ in the knapsack, and $p_{ij}$ for $i=1,\ldots,n$, $j=1,\ldots,n$ are non-negative profits associated with including item $i$ and item $j$ together in the knapsack. By solving (1a)-(1c), the ultimate goal is to maximize profit corresponding to packing items in the knapsack, while simultaneously considering item interaction and ensuring that capacity restrictions are satisfied. 
 
-
-{% bibliography --cited %}
