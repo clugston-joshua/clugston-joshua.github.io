@@ -18,47 +18,6 @@ Consider the 0-1 quadratic knapsack problem:
 
 
 
-
-
-<table>
-  <caption>Table 1: QKP comparison between the proposed rollout method and CPLEX for varying number of available items and densities.</caption>
-  <tr>
-    <td colspan = "2"> </td> <td colspan ="2"> <strong>Rollout</strong> </td> <td colspan ="1"> <strong>CPLEX</strong> </td> 
-  </tr>
-  <tr>
-    <td> $n$ </td> <td> $\boldsymbol{\Delta}$ </td> <td><strong>Seconds</strong> </td> <td><strong>Gap</strong></td> <td><strong>Seconds</strong></td>
-  </tr>
-  <tr>
-    <td>50</td> <td>0.8</td> <td>2.985</td> <td>0.089</td> <td>35.346</td> 
-  </tr>
-  <tr>
-    <td>100</td> <td>0.65</td> <td>64.284</td> <td>0.058</td> <td>147.883</td> 
-  </tr>
-  <tr>
-    <td>150</td> <td>0.5</td> <td>57.799</td> <td>0.071</td> <td>121.692</td>
-  </tr>
-</table>
-
-<table>
-    <caption>Table 2: QKP comparison between the proposed rollout method and McCormick for varying number of available items and densities.</caption>
-  <tr>
-    <td colspan = "2"> </td> <td colspan ="2"> <strong>Rollout</strong> </td> <td colspan ="2"> <strong>CPLEX</strong> </td> 
-  </tr>
-  <tr>
-    <td> $n$ </td> <td> $\boldsymbol{\Delta}$ </td> <td><strong>Seconds</strong> </td> <td><strong>Gap</strong></td> <td><strong>Seconds</strong></td> <td><strong>Gap</strong></td>
-  </tr>
-  <tr>
-    <td>50</td> <td>0.8</td> <td>4.139</td> <td>0.104</td> <td>1.147</td> <td>0.01</td> 
-  </tr>
-  <tr>
-    <td>100</td> <td>0.65 </td> <td>16.562</td> <td>0.077</td> <td>14.351</td> <td>0.01</td>  
-  </tr>
-  <tr>
-    <td>200</td> <td>0.8</td> <td>206.144</td> <td>0.108</td> <td>342.467</td> <td>0.383</td> 
-  </tr>
-</table>
-
-
 ## Conclusion
 As discussed in the previous section, rollout is comparable to solving (2a)-(2g) with CPLEX for QKP instances of moderate size and density, to large density. When considering large and difficult QKP instances, it is clear that rollout scales much better than solving (2a)-(2g) with CPLEX. Thus, rollout appears to be a viable option for a scalable algorithm which may be used to solve large-scale QKP instances. Given the clear improvement in computational speed, accuracy of the proposed approach could potentially be further improved by employing a multi-step lookahead rollout approach. Furthermore, given that McCormick outperforms rollout in some instances, a different base policy could be attempted in later work to improve the results observed. For instance, a potential base policy which may provide additional improvement would consider solving the LP relaxation of (2a)-(2g). Future work should then compare the performance of the proposed approach against other well-known approaches such as those introduced in \cite{Fomeni-Letchford} and \cite{FENNICH2024102}, as well as against the approach in which subgradient methods or the LP relaxation of (2a)-(2g) are used. A more extensive study across varying instances could also be conducted to provide more evidence toward the efficacy of each proposed approach.    
 
