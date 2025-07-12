@@ -199,4 +199,4 @@ As discussed in the previous section, rollout is comparable to solving (2a)-(2g)
 
 ## References
 
-{% bibliography --cited %}
+<!-- {% bibliography --cited %} -->
