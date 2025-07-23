@@ -32,13 +32,6 @@ jobs:
       - name: Build site
         run: bundle exec jekyll build
 
-      - name: List contents of _site
-        run: |
-          echo "Listing _site directory..."
-          ls -al _site
-          echo "Printing first 10 lines of index.html:"
-          head -n 10 _site/index.html
-
       # Upload the generated site (_site folder) as an artifact
       - name: Upload built site
         uses: actions/upload-artifact@v4
