@@ -31,7 +31,11 @@ plugins:
  - jekyll-feed
  - jekyll-seo-tag
  - jekyll-scholar
-
+   scholar:
+      source: _bibliography
+      bibliography: references.bib
+      style: apa
+      locale: en
 # Uncomment the following setting if you wish to disable deprecation warnings
 #   from newer versions of sass converter. Adapt as required.
 # sass:
