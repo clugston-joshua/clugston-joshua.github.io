@@ -38,12 +38,12 @@ jobs:
         with:
           name: site
           path: _site
-
+          
+      - uses: actions/checkout@v4
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: ccloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: clugston-joshua-github-io
           directory: _site
-          branch: master
+          
