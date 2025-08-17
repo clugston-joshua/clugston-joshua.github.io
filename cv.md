@@ -9,8 +9,8 @@ permalink: /cv/
 
 ## Education
 
-- **Doctorate of Philosophy - Industrial Engineering**
-  : **August 2023 - Current**
+- **Masters of Science - Industrial Engineering (Operations Research)**
+  : **August 2023 - May 2025**
   
   Arizona Sate University 
     : Tempe, AZ
@@ -23,14 +23,7 @@ permalink: /cv/
   
   - Graduated with honors: cum laude
 
-## Publications
-
-[~P1]: **TBD**
-
 ## Awards and Fellowships
-
-- **Bert Keats Fellowship Endownment**, Arizona State University
-  : August, 2025 - May, 2026
 
 - **Spring 2025 Graduate College Univeristy Grant**, Arizona State University
   : January, 2025 - May, 2025
@@ -39,4 +32,4 @@ permalink: /cv/
   : October, 2024
 
 - **Fulton Fellowship**, Arizona State University
-  : August, 2023 - Current
+  : August, 2023 - May, 2025
