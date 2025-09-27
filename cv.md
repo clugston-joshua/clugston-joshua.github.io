@@ -25,7 +25,7 @@ permalink: /cv/
 
 ## Awards and Fellowships
 
-- **Spring 2025 Graduate College Univeristy Grant**, Arizona State University
+- **Spring 2025 Graduate College University Grant**, Arizona State University
   : January, 2025 - May, 2025
 
 - **SCAI Conference Travel Grant**, Arizona State University
