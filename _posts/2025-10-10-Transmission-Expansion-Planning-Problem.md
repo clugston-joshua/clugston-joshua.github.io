@@ -7,85 +7,65 @@ layout: post
 
 ##Transmission Expansion Planning Model
 
-<table>
-  
+<table> 
   <caption>Table 1: Variable, parameter, and set descriptions for TEP.</caption>
   <tr>
     <td> <strong>Symbol</strong> </td> <strong>Description</strong> </td> 
   </tr>
-  
   <tr>
     <td colspan = "2"> Sets </td> 
   </tr>
-  
   <tr>
     <td> $\mathcal{G}$ </td> <td> Set of generators </td> 
   </tr>
-
   <tr>
     <td> $\mathcal{E}^{\nu}$ </td> <td> Set of new lines </td>
   </tr>
-
   <tr>
     <td> $\mathcal{E}^{\epsilon}$ </td> <td> Set of existing lines </td>
   </tr>
-
   <tr>
     <td> $\mathcal{B}$ </td> <td> Set of buses </td>
   </tr>
-  
   <tr>
     <td colspan = "2"> Parameters </td>
   </tr>
-
   <tr>
     <td> $C_{g}$ </td> <td> Marginal cost for generator $g\in \mathcal{G}$ </td>
   </tr>
-
   <tr>
     <td> $C_{k}^{\text{newline}}$ </td> <td> Cost for new line $k\in \mathcal{E}^{\nu}\cup \mathcal{E}^{\epsilon}$ </td>
   </tr>
-
   <tr>
     <td> $P_{g}^{\max}$ </td> <td> Maximum production level for generator $g\in \mathcal{G}$ </td>
   </tr>
-
   <tr>
     <td> $F_{k}$ </td> <td> Thermal limit of line $k\in \mathcal{E}^{\nu} \cup \mathcal{E}^{\epsilon}$ </td>
   </tr>
-
   <tr>  
     <td> $B_{k}$ </td> <td> Susceptance on line $k\in \mathcal{E}^{\nu} cup \mathcal{E}^{\epsilon}$ </td>
   </tr>
-
   <tr>  
     <td> $d_{n}$ </td> <td> Power demand at bus $n\in\mathcal{B}$ </td>
   </tr>
-
   <tr>
     <td colspan = "2"> Variables </td>
   </tr>
-
   <tr>
     <td> $\delta_{n}^{r}$ </td> <td> Voltage angle at receiving bus $r\in\mathcal{B}$ </td>
   </tr>
-
   <tr>
     <td> $\delta_{n}^{s}$ </td> <td> Voltage angle at sending bus $r\in\mathcal{B}$ </td>
   </tr>
-
   <tr>
     <td> $P_{k}$ </td> <td> Flow on line $k\in\mathcal{E}^{\nu}\cup \mathcal{E}^{\epsilon}$, $k$ defined from $s\in \mathcal{B}$ to $r\in\mathcal{B}$ </td>
   </tr>
-
   <tr>
     <td> $P_{g}$ </td> <td> Real power output of generator $g\in\mathcal{G}$ </td>
   </tr>
-
   <tr>
     <td> $w_{k}$ </td> <td> Decision to install line $k\in\mathcal{E}^{\nu}$ </td>
   </tr>
-  
 </table>
 
 \begin{alignat}{1}
