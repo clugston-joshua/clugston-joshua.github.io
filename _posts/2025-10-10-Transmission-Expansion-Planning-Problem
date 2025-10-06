@@ -1,0 +1,66 @@
+---
+layout: post
+---
+
+#Introduction 
+<table>
+  
+  <caption>Table 1: Variable, parameter, and set descriptions for TEP.</caption>
+  <tr>
+    <td> <strong>Symbol</strong> </td> <strong>Description</strong> </td> 
+  </tr>
+  
+  <tr>
+    <td colspan = "2"> Sets </td> 
+  </tr>
+  
+  <tr>
+    <td> $\mathcal{G}$ </td> <td> ? </td> 
+  </tr>
+  <tr>
+    <td> ? </td> <td> ? </td>
+  </tr>
+  
+  <tr>
+    <td colspan = "2"> Parameters </td>
+  </tr>
+  <tr>
+    <td> ? </tr> <td> ? <td> </td>
+  </tr>
+
+  <tr>
+    <td> Variables </td>
+  </tr>
+  
+</table>
+
+\begin{alignat}{1}
+\text{minimize }\ & \sum_{g}P_{g}C_{g} + \sum_{k}C_{k}^{\text{newline}}w_{k}, \label{objective}\\ % OBJ FNC & cost of  new line (line 1)
+\text{subject to}\ & P_{g}\leq P_{g}^{\max},\quad \forall g\in \mathcal{G}, \\ % (line 2)
+% ignoring P_g_min that is nonzero (would be a unit commitment problem // not typical)
+& -F_{k}\leq P_{k} \leq F_{k}, \quad \forall k\in \mathcal{E}^{\epsilon} \\ % (line 3)
+% "Pk should be limited to the range that it is"
+& P_{k} = B_{k}[\delta^{r}_{n} - \delta^{s}_{n}],\quad \forall k\in\mathcal{E}^{\epsilon}, \\ % (line 4)
+% Pk is equation given based on power flow formulation that we learned
+&  -F_{k}w_{k}\leq P_{k}\leq F_{k}w_{k}, \quad \forall k\in \mathcal{E}^{\nu},\\ % (line 5)
+% For any new line we have a diff. line flow limit formulation w/ binary variable of wk included
+& -(1-w_{k})M\leq P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}],\ \forall k\in \mathcal{E}^{\nu},\\
+& P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}] \leq (1-w_{k})M,\ \forall k\in \mathcal{E}^{\nu},\\ % (line 6)
+% Power flor equation ONLY if the line is installed
+& \sum_{k=n^{s}}P_{k} - \sum_{k=n^{r}}P_{k} = \sum_{g=n}P_{g} - d_{n},\quad \forall n\in \mathcal{B}\\ % (line 7)
+% nodal power balance constraint b_theta formulation of the power flow
+& w_{k} \in \{0,1\},\quad \forall k\in \mathcal{E}^{\nu},\\ % (line 8)
+& P_{g} \geq 0,\quad \forall g\in \mathcal{G}, \label{power-generation} % (line 9)
+\end{alignat}
+
+##Transmission Expansion Planning Problem 
+
+##Survey of Prior Literature 
+
+#Results
+
+##Assumptions and Procedures
+
+##Numerical Experiments
+
+#Conclusion
