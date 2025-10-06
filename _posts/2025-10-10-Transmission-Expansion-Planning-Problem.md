@@ -10,7 +10,7 @@ layout: post
 <table> 
   <caption>Table 1: Variable, parameter, and set descriptions for TEP.</caption>
   <tr>
-    <td> <strong>Symbol</strong> </td> <strong>Description</strong> </td> 
+    <td> <strong>Symbol</strong> </td> <td><strong>Description</strong> </td> 
   </tr>
   <tr>
     <td colspan = "2"> Sets </td> 
