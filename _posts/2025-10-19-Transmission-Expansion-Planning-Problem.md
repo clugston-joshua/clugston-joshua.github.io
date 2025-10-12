@@ -6,7 +6,7 @@ Historically, electrical grid infastructure, particularly in many parts of North
 
 ## Transmission Expansion Planning Model
 
-In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge set $E$ and set of vertices $V$ corresponding to lines and buses within the electrical network, respectively. As TEP's goal is to determine how many and which lines, from a set of candidate lines, should be installed to meet predicted demand, the edge set $E$ will be partitioned so as to distinguish edges that can potentially be installed from those which are already installed. Table 1 below more precisely describes parameters, variables, and sets which are used to formalize the transmission of electricity across grid instances in the context of TEP.   
+In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge set $E$ and set of vertices $V$ corresponding to lines and buses within the electrical network, respectively. As TEP's goal is to determine how many, and which lines from a set of candidate lines should be installed to meet predicted demand, the edge set $E$ will be partitioned so as to distinguish edges that can potentially be installed from those which are already installed. Table 1 below more precisely describes parameters, variables, and sets which are used to formalize the transmission of electricity across grid instances in the context of TEP.   
 
 <table> 
   <caption>Table 1: Variable, parameter, and set descriptions for TEP.</caption>
