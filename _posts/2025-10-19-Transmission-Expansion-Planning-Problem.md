@@ -35,7 +35,7 @@ In an abstract sense, TEP is modeled as an undirected graph with edges $E$ and v
     <td> $C_{g}$ </td> <td> Marginal cost for generator $g\in \mathcal{G}$ </td>
   </tr>
   <tr>
-    <td> $C_{k}^{\text{newline}}$ </td> <td> Cost for new line $k\in \mathcal{E}^{\nu}\cup \mathcal{E}^{\epsilon}$ </td>
+    <td> $C_{k}^{\text{newline}}$ </td> <td> Cost for new line $k\in \mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$ </td>
   </tr>
   <tr>
     <td> $P_{g}^{\max}$ </td> <td> Maximum production level for generator $g\in \mathcal{G}$ </td>
@@ -44,7 +44,7 @@ In an abstract sense, TEP is modeled as an undirected graph with edges $E$ and v
     <td> $F_{k}$ </td> <td> Thermal limit of line $k\in \mathcal{E}^{\nu} \cup \mathcal{E}^{\epsilon}$ </td>
   </tr>
   <tr>  
-    <td> $B_{k}$ </td> <td> Susceptance on line $k\in \mathcal{E}^{\nu} cup \mathcal{E}^{\epsilon}$ </td>
+    <td> $B_{k}$ </td> <td> Susceptance on line $k\in \mathcal{E}^{\nu} \sqcup \mathcal{E}^{\epsilon}$ </td>
   </tr>
   <tr>  
     <td> $d_{n}$ </td> <td> Power demand at bus $n\in\mathcal{B}$ </td>
