@@ -73,7 +73,7 @@ Using the sets, variables, and paramaters previously outlined in Table 1, TEP is
 
 $$
 \begin{alignat}{1}
-\text{minimize }\ & \sum_{g}P_{g}C_{g} + \sum_{k}C_{k}^{\text{newline}}w_{k},\\ 
+\text{minimize }\ & \sum_{g\in\mathcal{G}}P_{g}C_{g} + \sum_{k\in\mathcal{E}^{\nu}}C_{k}^{\text{newline}}w_{k},\\ 
 \text{subject to}\ & 0\leq P_{g}\leq P_{g}^{\max},\quad \text{ for all } g\in \mathcal{G}, \\
 & -F_{k}\leq P_{k} \leq F_{k}, \quad \text{ for all } k\in \mathcal{E}^{\epsilon} \\ 
 & P_{k} = B_{k}[\delta^{r}_{n} - \delta^{s}_{n}],\quad \text{ for all } k\in\mathcal{E}^{\epsilon}, \\
