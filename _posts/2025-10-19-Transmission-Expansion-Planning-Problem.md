@@ -41,7 +41,7 @@ In an abstract sense, TEP is modeled as an undirected graph with edges $E$ and v
     <td> $P_{g}^{\max}$ </td> <td> Maximum production level for generator $g\in \mathcal{G}$ </td>
   </tr>
   <tr>
-    <td> $F_{k}$ </td> <td> Thermal limit of line $k\in \mathcal{E}^{\nu} \cup \mathcal{E}^{\epsilon}$ </td>
+    <td> $F_{k}$ </td> <td> Thermal limit of line $k\in \mathcal{E}^{\nu} \sqcup \mathcal{E}^{\epsilon}$ </td>
   </tr>
   <tr>  
     <td> $B_{k}$ </td> <td> Susceptance on line $k\in \mathcal{E}^{\nu} \sqcup \mathcal{E}^{\epsilon}$ </td>
@@ -59,7 +59,7 @@ In an abstract sense, TEP is modeled as an undirected graph with edges $E$ and v
     <td> $\delta_{n}^{s}$ </td> <td> Voltage angle at sending bus $r\in\mathcal{B}$ </td>
   </tr>
   <tr>
-    <td> $P_{k}$ </td> <td> Flow on line $k\in\mathcal{E}^{\nu}\cup \mathcal{E}^{\epsilon}$, $k$ defined from $s\in \mathcal{B}$ to $r\in\mathcal{B}$ </td>
+    <td> $P_{k}$ </td> <td> Flow on line $k\in\mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$, $k$ defined from $s\in \mathcal{B}$ to $r\in\mathcal{B}$ </td>
   </tr>
   <tr>
     <td> $P_{g}$ </td> <td> Real power output of generator $g\in\mathcal{G}$ </td>
