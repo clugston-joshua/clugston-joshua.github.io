@@ -102,7 +102,9 @@ where $M$ is often chosen to be large enough so that the polyedron defined by th
 In the above model, since $P_{g}$ is a variable describing the real power output from generator $g\in \mathcal{G}$, and $w_{k}$ is the binary decision pertaining to the installation of new line $k\in\mathcal{E}^{\nu}$, the objective function (1) calculates the total cost of installing a new line $k$ while simultaneously considering the total cost of power production (MW) for generator $g$. In addition, (2) ensures that each generator $g\in\mathcal{G}$ has an upper limit on the amount of power it may produce, so as to not exceed its total capacity, while also enforcing only non-negative amounts of power are produced by each generator. Similarly, transmission lines must also adhere to their rated thermal limit. To enforce this, (3) limits power flow, $P_{k}$, for each existing transmission line $k\in\mathcal{E}^{\epsilon}$ so that maximum flow capacity, $F_{k}$, is not exceeded. Power flow $P_{k}$ on each line is then further modeled through the DC power flow equations (4), which utilizes the susceptance of line $k$ and differences of phase angles for each sending bus $n^{s}$ and receiving bus $n^{r}$. In contrast to (3), however, which describes the thermal limit of existing lines, (5) enforces thermal limit ratings $F_{k}$ to be satisfied for new line $k\in \mathcal{E}^{k}$, only if $k$ is installed (or, equivalently, when $w_{k} = 1$). It should then be the case that (9) indicates that line $k\in\mathcal{E}^{\nu}$ is to be installed provided that $w_{k}=1$, whereas line $k$ is not to be installed should instead $w_{k}=0$. Moreover, whenever the latter is true, it necessarily follows from (5) that $P_{k}=0$. Normally, however, TEP also considers bilinear terms associated with Kirchoff's second law, which significantly increases the complexity of practically solving the TEP mathematical programming model. Due to the difficulties that may arise when attempting to encorporate non-convexities into a mathematical program, measures were taken to reformulate the constraints which regulate the line flow behavior according to Kirchoff's second law, 
 
 $$
+\begin{equation}
   P_{k} - B_{k}w_{k}(\delta_{n}^{r} - \delta_{n}^{s}) = 0,\ \text{ for each } k \in \mathcal{E}^{\nu}, 
+\end{equation*}
 $$
 
 while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), whereby Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
@@ -165,7 +167,7 @@ $$
 \end{equation}
 $$
 
-Therefore, the total contribution to the final cost from installation of new lines is $\$1.1500\times10^{8}$. This indicates that installation of new lines contributed a majority of the cost associated with the optimal objective value, as the optimal cost returned was approximately $\$1.1586\times10^{8}$, with relative optimality gap
+Therefore, the total contribution to the final cost from installation of new lines is $\\$1.1500\times10^{8}$. This indicates that installation of new lines contributed a majority of the cost associated with the optimal objective value, as the optimal cost returned was approximately $\\$1.1586\times10^{8}$, with relative optimality gap
 
 $$
 \begin{alignat}{1}
