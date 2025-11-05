@@ -141,13 +141,13 @@ Generating data for the new lines and generators as described in the previous su
 Solutions were acquired using an M1 MacBook Pro with 16GB of RAM. Solving returns 12 lines installed, with a particular solution instance being: 
 
 \begin{equation}
-\\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\} =: \mathcal{I}, 
+  \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\} =: \mathcal{I}, 
 \end{equation}
 
 in which $k\in\mathbb{Z}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alterative solution
 
 \begin{equation}
-\\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\}
+  \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\}
 \end{equation}
 
 with the same optimal objective value and installation costs, suggesting that the solution obtained by HiGHS and CPLEX may not be unique. Regardless, for each line in $\mathcal{I}$, their respective installation costs $C_{k}^{\text{newline}}$ entail that 
