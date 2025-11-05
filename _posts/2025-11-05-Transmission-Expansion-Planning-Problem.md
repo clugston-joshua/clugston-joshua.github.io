@@ -110,8 +110,6 @@ while further ensuring that the flows on each line to be installed, $k\in \mathc
 [comment]: Mathematically, TEP can be thought of as of a generalization of the minimum spanning tree problem,
 [comment]: and is a special case of more general capacitated network design problems,
 [comment]: such as those used for telecommunication network planning, route planning, to name a few (sources). 
-[comment]: (not sure if this should be said here ... )
-
 ## Brief Background 
 
 The Transmission Expansion Planning Problem considered above seeks to find the least cost of operating and installing new transmission lines, with the goal of meeting future demand for a given network instance. While the aforementioned model makes use of several simplifying assumptions to accomplish this goal, due to the highly non-linear and non-convex nature of TEP, coupled with its discreteness, solving TEP in its AC form is, in general, very difficult, with larger network sizes posing significant challenges in practice. Moreover, it is known that a solution to the deterministic TEP is the same as a minimum cost Steiner tree with more than two terminal vertices, and therefore TEP is NP-hard {% cite Moulin2010 %} (see figure 1), further indicating that attaining exact solutions to TEP is challenging.  
