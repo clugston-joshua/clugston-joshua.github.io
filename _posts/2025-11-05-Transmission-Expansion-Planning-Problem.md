@@ -120,8 +120,6 @@ Many authors which study TEP have employed reformulations or relaxations as a me
 
 In TEP's MILP form, there have been several methods from BnB and BnC which have been developed for solving .  
 
-# Results
-
 ## Assumptions and Procedures
 
 There are several assumptions, particularly with respect to not only the modeling aspect but also the data used for defining the instance considered, are considered. While, arguably the Garver-6 and IEEE-24 test systems have been the most popular instances for testing TEP methodology according to (cite paper), numerical testing will instead consider the IEEE-RTS-96 test system provided by {% cite  %}. 
@@ -132,7 +130,7 @@ The IEEE-RTS-96 test system includes 73 buses, 99 generators, and 121 existing l
 
 Some important modifications ... [something about how we should be doing generation and transmission planning simulatenously] It is assumed, firstly, that over the next 10 years the load at each bus $n\in\mathcal{B}$ will be tripled, with the peak load being the only factor used to load the transmission lines (??). Moreover, it is also assumed that the load will remain constant. To service the increased load at each bus, it is further assumed that the number of generators in the system is tripled. 
 
-With regard to generation, all generators are assumed to be committed, however start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each of new line considered having similar parameters ($B_{k}$) as the lines they are parallel to. It then follows, from this construction, that candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. (more context leading to next sentence). Newly installed lines with 230 kV rating will incur a cost of $900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of $400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, ?? new lines are considered in the modified data for potential installation. 
+With regard to generation, all generators are assumed to be committed, however start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each of new line considered having similar parameters ($B_{k}$) as the lines they are parallel to. It then follows, from this construction, that candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. (more context leading to next sentence). Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, ?? new lines are considered in the modified data for potential installation. 
 
 For $k $, $C_{k}^{\text{newline}}$ is obtained by multiplying the length of the in which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. Moreover, IEEE-RTS-96, as provided by {% cite %} 
 
@@ -143,13 +141,13 @@ Generating data for the new lines and generators as described in the previous su
 Solutions were acquired using an M1 MacBook Pro with 16GB of RAM. Solving returns 12 lines installed, with a particular solution instance being: 
 
 \begin{equation}
-\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} &= \{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\} =: \mathcal{I}, 
+\\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\} =: \mathcal{I}, 
 \end{equation}
 
 in which $k\in\mathbb{Z}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alterative solution
 
 \begin{equation}
-\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\}
+\\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\}
 \end{equation}
 
 with the same optimal objective value and installation costs, suggesting that the solution obtained by HiGHS and CPLEX may not be unique. Regardless, for each line in $\mathcal{I}$, their respective installation costs $C_{k}^{\text{newline}}$ entail that 
@@ -161,7 +159,7 @@ with the same optimal objective value and installation costs, suggesting that th
 Therefore, the total contribution to the final cost from installation of new lines is $\\$1.1500\times10^{8}$. This indicates that installation of new lines contributed a majority of the cost associated with the optimal objective value, as the optimal cost returned was approximately $\\$1.1586\times10^{8}$, with relative optimality gap
 
 \begin{equation}
-\texttt{rel\\_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}|} = 0,
+\texttt{rel_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}|} = 0,
 \end{equation}
 
 where $\texttt{upper\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\_bound}$ is the dual objective value at iteration $t$. When calculating optimality gap, tolerance for the optimality gap at the default value of $0.01\%$ for HiGHS and $?\%$ for CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds. HiGHS computes simplex iterations using the dual simplex method by default, which was left using this option as well (?). 
@@ -193,7 +191,7 @@ As discussed previously, to keep up with the increase in demand a total of 198 n
   <tr>
     <td> 241</td> <td> 12 </td> <td> 44 </td>
   </tr>
-</table
+</table>
 
 # Conclusion
 
