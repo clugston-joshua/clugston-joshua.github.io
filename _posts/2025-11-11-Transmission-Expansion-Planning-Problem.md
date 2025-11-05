@@ -26,7 +26,7 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
     <td> <strong>Symbol</strong> </td> <td><strong>Description</strong> </td> 
   </tr>
   <tr>
-    <td colspan = "2"> Sets </td> 
+    <td colspan = "2" style = > Sets </td> 
   </tr>
   <tr>
     <td> $\mathcal{G}$ </td> <td> Set of generators </td> 
@@ -41,7 +41,7 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
     <td> $\mathcal{B}$ </td> <td> Set of buses </td>
   </tr>
   <tr>
-    <td colspan = "2"> Parameters </td>
+    <td colspan = "2" style="text-align:center"> Parameters </td>
   </tr>
   <tr>
     <td> $C_{g}$ </td> <td> Marginal cost for generator $g\in \mathcal{G}$ </td>
@@ -62,7 +62,7 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
     <td> $d_{n}$ </td> <td> Power demand at bus $n\in\mathcal{B}$ </td>
   </tr>
   <tr>
-    <td colspan = "2"> Variables </td>
+    <td colspan = "2" style="text-align:center"> Variables </td>
   </tr>
   <tr>
     <td> $\delta_{n}^{r}$ </td> <td> Voltage angle at receiving bus $r\in\mathcal{B}$ </td>
@@ -180,18 +180,18 @@ As discussed previously, to keep up with the increase in demand a total of 198 n
     <td> <strong> All </strong> </td> <td> <strong> Some </strong></td> <td> <strong> None </strong></td>
   </tr>
   <tr>
-    <td> </td> <td> <strong> New Generators </strong></td> <td> </td>
+    <td colspan="3" style="text-align:center"> <strong> New Generators </strong> </td>
   </tr>
   <tr> 
     <td>172 </td> <td> 5</td> <td> 21 </td>
   </tr>
   <tr>
-    <td> </td> <td><strong> All Generators </strong></td> <td></td>
+    <td colspan="3" style="text-align:center"> <strong> All Generators </strong> </td>
   </tr>
   <tr>
     <td> 241</td> <td> 12 </td> <td> 44 </td>
   </tr>
 </table>
 
-# Conclusion
+## Conclusion
 
