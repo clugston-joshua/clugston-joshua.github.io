@@ -107,16 +107,26 @@ In the above model, since $P_{g}$ is a variable describing the real power output
 
 while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), whereby Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
 
-[comment]: Mathematically, TEP can be thought of as of a generalization of the minimum spanning tree problem,
-[comment]: and is a special case of more general capacitated network design problems,
-[comment]: such as those used for telecommunication network planning, route planning, to name a few (sources). 
 ## Brief Background 
 
-The Transmission Expansion Planning Problem considered above seeks to find the least cost of operating and installing new transmission lines, with the goal of meeting future demand for a given network instance. While the aforementioned model makes use of several simplifying assumptions to accomplish this goal, due to the highly non-linear and non-convex nature of TEP, coupled with its discreteness, solving TEP in its AC form is, in general, very difficult, with larger network sizes posing significant challenges in practice. Moreover, it is known that a solution to the deterministic TEP is the same as a minimum cost Steiner tree with more than two terminal vertices, and therefore TEP is NP-hard {% cite Moulin2010 %} (see figure 1), further indicating that attaining exact solutions to TEP is challenging.  
+The Transmission Expansion Planning Problem considered above seeks to find the least cost of operating and installing new transmission lines, with the goal of meeting future demand for a given network instance. While the aforementioned model makes use of several simplifying assumptions to accomplish this goal, due to the highly non-linear and non-convex nature of TEP, coupled with its discreteness, solving TEP in its AC form is, in general, very difficult, with larger network sizes posing significant challenges in practice. Moreover, it is known that a solution to the deterministic TEP is the same as a minimum cost Steiner tree with more than two terminal vertices, and therefore TEP is NP-hard {% cite Moulin2010 %}, further indicating that attaining exact solutions to TEP is challenging.  
 
-Many authors which study TEP have employed reformulations or relaxations as a means of tackling many of the difficulties presented by its original AC formulation. For instance, through relaxation of the binary variables, as done in (citations here); . Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large penalty terms, $M$. By removing these nonlinearities, TEP can be then formulated as a mixed-integer linear program (MILP) so that traditional exact methods such as Branch and Bound (BnB), Branch and Cut (BnC), Branch-and-Price or some variation and combinations of these methods can be applied. Typically, reformulations are an effective method in global optimization, especially when dealing with integer programs that include nonlinearities. Unfortunately, however, in the context of TEP there are not many effective reformulation techniques for the AC power flow constraints (), which include trignometric functions that are difficult for many solvers to handle. As a result, it is common practice to approximate AC power flow equations linearly using DC power flow, as done (above) in (the provided model with eq numbers) (citation maybe instead?).  
+Many authors which study TEP have employed reformulations or relaxations as a means of tackling many of the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large penalty terms, $M$. By removing these nonlinearities, TEP can be then formulated as a mixed-integer linear program (MILP) so that traditional exact methods such as Branch and Bound (BnB), Branch and Cut (BnC), Branch-and-Price or some variation and combinations of these methods can be applied. Typically, reformulations are an effective method in global optimization, especially when dealing with integer programs that include nonlinearities. Unfortunately, however, in the context of TEP there are not many well-known exact reformulation techniques for the AC power flow constraints 
 
-[image here comparing a minimum steiner tree and a solution to TEP] 
+$$
+\begin{alignat}{1}
+  P_{i} &= \sum_{j=1}^{\text{card}(\mathcal{E}^{\epsilon})}|V_{i}||V_{j}|(G_{ij}\cos(\delta_{i}-\delta_{j})+ B_{ij}\sin(\delta_{i}-\delta_{j})),\ \text{ for all $i\in\mathcal{E}^{\nu}$},\\
+  Q_{i} &= \sum_{j=1}^{\text{card}(\mathcal{E}^{\epsilon})}|V_{i}||V_{j}|(G_{ij}\sin(\delta_{i}-\delta_{j}) - B_{ij}\cos(\delta_{i}-\delta_{j})),\ \text{ for all $i\in\mathcal{E}^{\nu}$}
+\end{alignat}
+$$
+
+which include trignometric and non-smooth functions that are difficult for many solvers to handle. As a result, a common approach is to approximate AC power flow equations linearly using DC power flow by first assuming the difference in phase angles is small, and secondly further assuming the voltages are such that $V_{i} = V_{j} = 1$ for all $i$ and $j$. In assuming such, it is the case that $\cos(\delta_{i}-\delta_{j}) \approx 1$, $\sin(\delta_{i}- \delta_{j})\approx \delta_{i}- \delta_{j}$, so that 
+
+\begin{equation}
+  P_{i} = B_{ij}(\delta_{i}-\delta_{k}),\ \text{ for all $i\in\mathcal{E}^{\nu}$}
+\end{equation}
+
+for real power flow, aligning with (4) above.
 
 In TEP's MILP form, there have been several methods from BnB and BnC which have been developed for solving .  
 
@@ -130,9 +140,15 @@ The IEEE-RTS-96 test system includes 73 buses, 99 generators, and 121 existing l
 
 Some important modifications ... [something about how we should be doing generation and transmission planning simulatenously] It is assumed, firstly, that over the next 10 years the load at each bus $n\in\mathcal{B}$ will be tripled, with the peak load being the only factor used to load the transmission lines (??). Moreover, it is also assumed that the load will remain constant. To service the increased load at each bus, it is further assumed that the number of generators in the system is tripled. 
 
-With regard to generation, all generators are assumed to be committed, however start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each of new line considered having similar parameters ($B_{k}$) as the lines they are parallel to. It then follows, from this construction, that candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. (more context leading to next sentence). Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, ?? new lines are considered in the modified data for potential installation. 
+With regard to generation, all generators are assumed to be committed, however start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each of new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation (???). 
 
-For $k $, $C_{k}^{\text{newline}}$ is obtained by multiplying the length of the in which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. Moreover, IEEE-RTS-96, as provided by {% cite %} 
+For $k \in\mathcal{E}^{\nu}$, $C_{k}^{\text{newline}}$ is obtained by multiplying the length of the in which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. Moreover, IEEE-RTS-96, as provided by {% cite %}. The load on each bus is using the standard apparent power equation  
+
+\begin{equation}
+  S = \sqrt{P^{2} + Q^{2}}
+\end{equation}
+
+where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, the continous rating of each new line, as described in the model by $F_{k}$ for $k\in\mathcal{E}^{\nu}, consisted of multplying the load on each bus connected by three (?) to get three times the MVA, (?). In doing this, new amapacitied were calculated to determine if zero, one, or two lines were required to cover the new demand.  
 
 ## Numerical Experiments
 
