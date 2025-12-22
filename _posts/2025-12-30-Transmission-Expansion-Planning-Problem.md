@@ -6,16 +6,6 @@ The primary purpose of the electrical grid is to safely and reliably transport e
 
 Common problems which seek to aid in planning of grid improvements often focus on increasing transmission and generation aspects of existing grid infrastructure. In which case, a mathematical model can be developed to assess the best possible configuration resulting in an adequate number of either generators or lines to be installed that provides least costs and proper coverage. However, it is generally the case that such exploration of generator and line installation configurations are conducted separately so as to avoid an overly complicated mathematical model. Particularly, for planning related line expansion, a so-called transmission expansion planning problem (TEP) is solved, whereas a generation expansion planning problem is to be solved for planning related to generation. In this blog post, I will explore the former, and primarily focus on an application of TEP which utilizes a moderately-size and well-known test system. 
 
-
-[comment]: https://www.landapp.com/post/the-history-of-the-power-grid-in-the-united-states
-[comment]: https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/
-[comment]: https://www.microsoft.com/en-us/research/wp-content/uploads/2024/03/GPU_Power_ASPLOS_24.pdf
-[comment]: https://huggingface.co/AIEnergyScore
-[comment]: https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers
-[comment]: https://spectrum.ieee.org/the-ev-transition-explained-2658463709
-[comment]: https://www.landapp.com/post/the-history-of-the-power-grid-in-the-united-states
-[comment]: https://www.cfr.org/backgrounder/how-does-us-power-grid-work
-
 ## Transmission Expansion Planning Model
 
 In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge set $E$ and set of vertices $V$ corresponding to lines and buses within the electrical network, respectively. As TEP's goal is to determine how many, and which lines from a set of candidate lines should be installed to meet predicted demand, the edge set $E$ will be partitioned so as to distinguish edges that can potentially be installed from those which are already installed. Table 1 below more precisely describes parameters, variables, and sets which are used to formalize the transmission of electricity across grid instances in the context of TEP.   
@@ -84,17 +74,17 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
 Using the sets, variables, and paramaters previously outlined in Table 1, TEP is often mathematically written, in DC form, as follows:
 
 $$
-\begin{alignat}{1}
-\text{minimize }\ & \sum_{g\in\mathcal{G}}P_{g}C_{g} + \sum_{k\in\mathcal{E}^{\nu}}C_{k}^{\text{newline}}w_{k},\\ 
-\text{subject to}\ & 0\leq P_{g}\leq P_{g}^{\max},\quad \text{ for all } g\in \mathcal{G}, \\
-& -F_{k}\leq P_{k} \leq F_{k}, \quad \text{ for all } k\in \mathcal{E}^{\epsilon} \\ 
-& P_{k} = B_{k}[\delta^{r}_{n} - \delta^{s}_{n}],\quad \text{ for all } k\in\mathcal{E}^{\epsilon}, \\
-&  -F_{k}w_{k}\leq P_{k}\leq F_{k}w_{k}, \quad \text{ for all } k\in \mathcal{E}^{\nu},\\ 
-& -(1-w_{k})M\leq P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}],\ \text{ for all } k\in \mathcal{E}^{\nu},\\
-& P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}] \leq (1-w_{k})M,\ \text{ for all } k\in \mathcal{E}^{\nu},\\ 
-& \sum_{k=n^{s}}P_{k} - \sum_{k=n^{r}}P_{k} = \sum_{g=n}P_{g} - d_{n},\quad \text{ for all } n\in \mathcal{B}\\ 
-& w_{k} \in \{0,1\},\quad \text{ for all } k\in \mathcal{E}^{\nu},
-\end{alignat}
+  \begin{alignat}{1}
+    \text{minimize }\ & \sum_{g\in\mathcal{G}}P_{g}C_{g} + \sum_{k\in\mathcal{E}^{\nu}}C_{k}^{\text{newline}}w_{k},\\ 
+    \text{subject to}\ & 0\leq P_{g}\leq P_{g}^{\max},\quad \text{ for all } g\in \mathcal{G}, \\
+    & -F_{k}\leq P_{k} \leq F_{k}, \quad \text{ for all } k\in \mathcal{E}^{\epsilon} \\ 
+    & P_{k} = B_{k}[\delta^{r}_{n} - \delta^{s}_{n}],\quad \text{ for all } k\in\mathcal{E}^{\epsilon}, \\
+    &  -F_{k}w_{k}\leq P_{k}\leq F_{k}w_{k}, \quad \text{ for all } k\in \mathcal{E}^{\nu},\\ 
+    & -(1-w_{k})M\leq P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}],\ \text{ for all } k\in \mathcal{E}^{\nu},\\
+    & P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}] \leq (1-w_{k})M,\ \text{ for all } k\in \mathcal{E}^{\nu},\\ 
+    & \sum_{k=n^{s}}P_{k} - \sum_{k=n^{r}}P_{k} = \sum_{g=n}P_{g} - d_{n},\quad \text{ for all } n\in \mathcal{B}\\ 
+    & w_{k} \in \{0,1\},\quad \text{ for all } k\in \mathcal{E}^{\nu},
+  \end{alignat}
 $$
 
 where $M$ is often chosen to be large enough so that the polyedron defined by the feasible region permits high quality solutions without impacting solution times. One possible strategy for selecting $M$ is to do so in a fashion which ensures that the constraints involving $M$ define the tightest-fitting inequality for the feasible region described by TEP. By choosing $M$ such that the preceding is true, it would necessarily follow that the resulting $M$ would need to be the minimum $M$ required to acquire high-quality feasible solutions, while still providing benefits from the provided formulation. 
@@ -140,7 +130,7 @@ The IEEE-RTS-96 test system includes 73 buses, 99 generators, and 121 existing l
 
 Some important modifications ... [something about how we should be doing generation and transmission planning simulatenously] It is assumed, firstly, that over the next 10 years the load at each bus $n\in\mathcal{B}$ will be tripled, with the peak load being the only factor used to load the transmission lines (??). Moreover, it is also assumed that the load will remain constant. To service the increased load at each bus, it is further assumed that the number of generators in the system is tripled. 
 
-With regard to generation, all generators are assumed to be committed, however start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each of new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation (???). 
+With regard to generation, all generators are assumed to be committed, however, start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each of new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation (???). 
 
 For $k \in\mathcal{E}^{\nu}$, $C_{k}^{\text{newline}}$ is obtained by multiplying the length of the in which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. Moreover, IEEE-RTS-96, as provided by {% cite %}. The load on each bus is using the standard apparent power equation  
 
