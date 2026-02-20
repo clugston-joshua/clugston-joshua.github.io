@@ -4,7 +4,7 @@ layout: post
 
 The primary purpose of the electrical grid is to safely and reliably transport electricity from electrical power generation units to consumers. To this end, electrical grid infastructure's primary components consists of several types of power generating units, called "generators," which, for instance, use steam, water, wind, solar, fossil fuels, and nuclear energy to create power, in addition to devices which are used for appropriately reducing or increasing voltage as electricity travels to its end destination, lines for transporting the generated energy, and energy storage facilities that allow excess generated energy to be used at a later time. Designation of resources to further developement of grid infrastruture technology is based off of projected demand for energy, whereby improvements are made to existing grid configurations in order to ensure the reliability and safety of the transportation of energy under predicted increased demand.  
 
-Common problems which seek to aid in planning of grid improvements often focus on increasing transmission and generation aspects of existing grid infrastructure. In which case, a mathematical model can be developed to assess the best possible configuration resulting in an adequate number of either generators or lines to be installed that provides least costs and proper coverage. However, it is generally the case that such exploration of generator and line installation configurations are conducted separately so as to avoid an overly complicated mathematical model. Particularly, for planning related line expansion, a so-called transmission expansion planning problem (TEP) is solved, whereas a generation expansion planning problem is to be solved for planning related to generation. In this blog post, I will explore the former, and primarily focus on an application of TEP which utilizes a moderately-size and well-known test system. 
+Common problems which seek to aid in planning of grid improvements often focus on increasing transmission and generation aspects of existing grid infrastructure. In which case, a mathematical model can be developed to assess the best possible configuration resulting in an adequate number of either generators or lines to be installed that provides least costs and proper coverage. However, it is generally observed that such exploration of generator and line installation configurations are conducted separately so as to avoid an overly complicated mathematical model. Particularly, for planning related line expansion, a so-called *transmission expansion planning problem* (TEP) is solved, whereas a generation expansion planning problem is to be solved for planning related to generation. In this blog post, I will explore the former, and primarily focus on an application of TEP which utilizes a moderately-size and well-known test system. 
 
 ## Transmission Expansion Planning Model
 
@@ -91,9 +91,11 @@ where $M$ is often chosen to be large enough so that the polyedron defined by th
 
 In the above model, since $P_{g}$ is a variable describing the real power output from generator $g\in \mathcal{G}$, and $w_{k}$ is the binary decision pertaining to the installation of new line $k\in\mathcal{E}^{\nu}$, the objective function (1) calculates the total cost of installing a new line $k$ while simultaneously considering the total cost of power production (MW) for generator $g$. In addition, (2) ensures that each generator $g\in\mathcal{G}$ has an upper limit on the amount of power it may produce, so as to not exceed its total capacity, while also enforcing only non-negative amounts of power are produced by each generator. Similarly, transmission lines must also adhere to their rated thermal limit. To enforce this, (3) limits power flow, $P_{k}$, for each existing transmission line $k\in\mathcal{E}^{\epsilon}$ so that maximum flow capacity, $F_{k}$, is not exceeded. Power flow $P_{k}$ on each line is then further modeled through the DC power flow equations (4), which utilizes the susceptance of line $k$ and differences of phase angles for each sending bus $n^{s}$ and receiving bus $n^{r}$. In contrast to (3), however, which describes the thermal limit of existing lines, (5) enforces thermal limit ratings $F_{k}$ to be satisfied for new line $k\in \mathcal{E}^{k}$, only if $k$ is installed (or, equivalently, when $w_{k} = 1$). It should then be the case that (9) indicates that line $k\in\mathcal{E}^{\nu}$ is to be installed provided that $w_{k}=1$, whereas line $k$ is not to be installed should instead $w_{k}=0$. Moreover, whenever the latter is true, it necessarily follows from (5) that $P_{k}=0$. Normally, however, TEP also considers bilinear terms associated with Kirchoff's second law, which significantly increases the complexity of practically solving the TEP mathematical programming model. Due to the difficulties that may arise when attempting to encorporate non-convexities into a mathematical program, measures were taken to reformulate the constraints which regulate the line flow behavior according to Kirchoff's second law, 
 
+$$
 \begin{equation}
   P_{k} - B_{k}w_{k}(\delta_{n}^{r} - \delta_{n}^{s}) = 0,\ \text{ for each } k \in \mathcal{E}^{\nu}, 
 \end{equation}
+$$
 
 while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), whereby Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
 
@@ -101,7 +103,9 @@ while further ensuring that the flows on each line to be installed, $k\in \mathc
 
 The Transmission Expansion Planning Problem considered above seeks to find the least cost of operating and installing new transmission lines, with the goal of meeting future demand for a given network instance. While the aforementioned model makes use of several simplifying assumptions to accomplish this goal, due to the highly non-linear and non-convex nature of TEP, coupled with its discreteness, solving TEP in its AC form is, in general, very difficult, with larger network sizes posing significant challenges in practice. Moreover, it is known that a solution to the deterministic TEP is the same as a minimum cost Steiner tree with more than two terminal vertices (which are a subset of $\mathcal{B}$), and therefore TEP is NP-hard {% cite Moulin2010 %}, further indicating that attaining exact solutions to TEP is challenging.  
 
-Many authors which study TEP have employed reformulations or relaxations as a means of tackling many of the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large penalty terms, $M$. By removing these nonlinearities, TEP can be then formulated as a mixed-integer linear program (MILP) so that traditional exact methods such as Branch and Bound (BnB), Branch and Cut (BnC), Branch-and-Price or some variation and combinations of these methods can be applied. Typically, reformulations are an effective method in global optimization, especially when dealing with integer programs that include nonlinearities. Unfortunately, however, in the context of TEP there are not many well-known exact reformulation techniques for the AC power flow constraints 
+Many authors which study TEP have employed reformulations or relaxations as a means of tackling many of the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large unbounding terms, $M$. By removing these nonlinearities, TEP can be then formulated as a mixed-integer linear program (MILP) so that traditional exact methods such as Branch and Bound (BnB), Branch and Cut (BnC), Branch-and-Price or some variation and combinations of these methods can be applied.
+
+Typically, reformulations are an effective method in global optimization, especially when dealing with integer programs that include nonlinearities. In the context of TEP there are many well-known exact reformulation techniques for the AC power flow constraints 
 
 $$
 \begin{alignat}{1}
@@ -110,13 +114,18 @@ $$
 \end{alignat}
 $$
 
-which include trignometric and non-smooth functions that are difficult for many solvers to handle. As a result, a common approach is to approximate AC power flow equations linearly using DC power flow by first assuming the difference in phase angles is small, and secondly further assuming the voltages are such that $V_{i} = V_{j} = 1$ for all $i$ and $j$. In assuming such, it is the case that $\cos(\delta_{i}-\delta_{j}) \approx 1$, whereas $\sin(\delta_{i}- \delta_{j})\approx \delta_{i}- \delta_{j}$, so that 
+which overcome difficulties that are posed by trignometric and non-smooth functions contained therein. For instance, when particularly considering polar formulation of the AC power flow constraints as done in the above, ... 
 
+
+As a result, a common approach is to approximate AC power flow equations linearly using DC power flow by first assuming the difference in phase angles is small, and secondly further assuming the voltages are such that $V_{i} = V_{j} = 1$ for all $i$ and $j$. In assuming such, it is the case that $\cos(\delta_{i}-\delta_{j}) \approx 1$, whereas $\sin(\delta_{i}- \delta_{j})\approx \delta_{i}- \delta_{j}$, so that 
+
+$$
 \begin{equation}
-  P_{i} = B_{ij}(\delta_{i}-\delta_{k}),\ \text{ for all $i\in\mathcal{E}^{\nu}$}
+  P_{k} = B_{ij}(\delta_{i}-\delta_{j}),\ \text{ for all $k\in\mathcal{E}^{\nu}$}
 \end{equation}
+$$
 
-for real power flow, aligning with (4) above.
+for real power flow, aligning with (4) above after disregarding reactive power flow entirely.
 
 In TEP's MILP form, there have been several methods from BnB and BnC which have been developed for solving .  
 
