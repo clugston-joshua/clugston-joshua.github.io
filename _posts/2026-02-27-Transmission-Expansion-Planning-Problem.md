@@ -122,7 +122,7 @@ $$
 
 for real power flow, aligning with (4) above after disregarding reactive power flow entirely.
 
-## Assumptions and Procedures
+## Assumptions and Data Modification Procedures
 
 There are several assumptions, particularly with respect to not only the modeling aspect mentioned previously but also the data used for defining the TEP instance, that are considered. While, arguably the Garver-6 and IEEE-24 test systems have been the most popular instances for testing TEP methodology according to {% cite MUTLU2021107543 %}, numerical testing here will instead consider the IEEE-RTS-96 test system, as readily accessed through [this website](https://www2.ee.washington.edu/research/pstca/rts/pg_tcarts.htm). 
 
@@ -140,15 +140,17 @@ $$
 \end{equation}
 $$
 
-where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, the continous rating of each new line, as described in the model by $F_{k}$ for $k\in\mathcal{E}^{\nu}$, was obtained by multplying the load on each bus connected by three (?) to get three times the MVA, (?). In doing this, new amapacitied were calculated to determine if zero, one, or two lines were required to cover the new demand. After increasing demand by three-fold, 198 new generators were considered to meet the expected future demand. Finally, susceptance was calculated using the reactance value of $X_{k}>0$ for each line $k\in\mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$ using
+where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, the continous rating of each new line, as described in the model by $F_{k}$ for $k\in\mathcal{E}^{\nu}$, was obtained by multplying the load on each bus connected by three (?) to get three times the MVA, (?). In doing this, new amapacitied were calculated to determine if zero, one, or two lines were required to cover the new demand. After increasing demand by three-fold, 198 new generators were considered to meet the expected future demand. Finally, susceptance was calculated using the reactance value of $X_{k}>0$ using
 
 $$
 \begin{equation}
-  B_{k} = \frac{1}{X_{k}}.
+  B_{k} = \frac{1}{X_{k}}
 \end{equation}
 $$
 
-The model provided in (1)-(10) was solved using Julia's JuMP with HiGHS initially, and with CPLEX later for comparison. A preference for HiGHS is taking over comparable MILP solvers such as CPLEX or Gurobi, as the former is readily available without the necessity of licensing, which may not be easily procured outside of academic institutions, or instutitions which have funding available for said licensing. Using an open-source, freely-available solver therefore allows a broader audence to reproduce the following results without restriction. With this being stated, however, an interesting and potentially insightful comparison considers the effectiveness of each solver as a means of ascertaining an understanding of which performs best in the context of this model and data instance. This comparison is breifly made in what follows, with the primarily focus in any case remaining with the result obtained from HiGHS due to the aforementioned reasons just provided. 
+for each line $k\in\mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$. 
+
+The model provided in (1)-(10) was solved using Julia's JuMP with HiGHS initially, and with CPLEX later for comparison. A preference for HiGHS is taking over comparable MILP solvers such as CPLEX or Gurobi, as the former is readily available without the necessity of licensing, which may not be easily procured outside of academic institutions, or instutitions which have funding available for said licensing. Using an open-source, freely-available solver therefore allows a broader audence to reproduce the following results without restriction. With this being stated, however, an interesting and potentially insightful comparison considers the effectiveness of each solver as a means of ascertaining an understanding of which performs best in the context of this model and data instance. This comparison is briefly made in what follows, with the primarily focus in any case remaining with the result obtained from HiGHS due to the aforementioned reasons just provided. 
 
 ## Numerical Experiments
 
