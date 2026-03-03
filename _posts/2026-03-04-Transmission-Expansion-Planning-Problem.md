@@ -71,7 +71,7 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
   </tr>
 </table>
 
-Using the sets, variables, and paramaters previously outlined in Table 1, TEP is often mathematically written, in DC form, as follows:
+Using the sets, variables, and parameters previously outlined in Table 1, TEP is often mathematically written, in DC form, as follows:
 
 $$
   \begin{alignat}{1}
@@ -97,13 +97,13 @@ $$
 \end{equation}
 $$
 
-while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), whereby Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
+while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), while Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
 
 ## Brief Background and DC Power Flow Derivation
 
 The Transmission Expansion Planning Problem considered above seeks to find the least cost of operating and installing new transmission lines, with the goal of meeting future demand for a given network instance. While the aforementioned model makes use of several simplifying assumptions to accomplish this goal, due to the highly non-linear and non-convex nature of TEP, coupled with its discreteness, solving TEP in its AC form is, in general, very difficult, with larger network sizes posing significant challenges in practice. Moreover, it is known that a solution to the deterministic TEP is the same as a minimum cost Steiner tree with more than two terminal vertices (which are a subset of $\mathcal{B}$), and therefore TEP is NP-hard {% cite Moulin2010 %}, further indicating that attaining exact solutions to TEP is challenging.  
 
-Many authors which study TEP have employed reformulations and relaxations as a means of tackling many of the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large unbounding constants, $M$. By removing nonlinearities contained in these constraints, TEP can thereby be presented as a mixed-integer linear program (MILP) so that well-known exact methods such as Branch and Bound, Branch and Cut, Column Generation, or some variation and combinations of these methods can be applied. In addition, there are many techniques for exactly reformulating or approximating the AC line power flow constraints 
+Many authors which study TEP have employed reformulations and relaxations as a means of tackling the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large unbounding constants, $M$. By removing nonlinearities contained in these constraints, TEP can thereby be presented as a mixed-integer linear program (MILP) so that well-known exact methods such as Branch and Bound, Branch and Cut, Column Generation, or some variation and combinations of these methods can be applied. In addition, there are many techniques for exactly reformulating or approximating the AC line power flow constraints 
 
 $$
 \begin{alignat}{1}
@@ -112,7 +112,7 @@ $$
 \end{alignat}
 $$
 
-which attempt to also resolve difficulties that are posed by trignometric and non-smooth functions contained therein. A common approach to overcome such difficulties posed by the AC power flow constraints is as done above in (4), whereby an approximation is considered in place of an exact reformulation. For instance, as done in the preceding, a linear approximation of the AC power flow equation is performed using DC power flow through first assuming that the difference in phase angles 
+which attempt to also resolve difficulties that are posed by trignometric and non-smooth functions contained therein. However, a common approach to overcome such difficulties posed by the AC power flow constraints is as done above in (4), whereby an approximation is considered in place of an exact reformulation. For instance, as done in the preceding, a linear approximation of the AC power flow equation is performed using DC power flow through first assuming that the difference in phase angles 
 
 $$
 \begin{equation*}
@@ -132,7 +132,7 @@ for real power flow, aligning with (4) above after disregarding reactive power f
 
 ## Assumptions and Data Modification Procedures
 
-There are several assumptions, particularly with respect to not only the modeling aspect mentioned previously but also the data used for defining the TEP instance, that are considered. While, arguably the Garver-6 and IEEE-24 test systems have been the most popular instances for testing TEP methodology according to {% cite MUTLU2021107543 %}, numerical testing here will instead consider the IEEE-RTS-96 test system, as readily accessed through [this website](https://www2.ee.washington.edu/research/pstca/rts/pg_tcarts.htm). 
+There are several assumptions, particularly with respect to not only modeling aspects mentioned previously but also the data used for defining the TEP instance, that are considered. While, arguably the Garver-6 and IEEE-24 test systems have been the most popular instances for testing TEP methodology according to {% cite MUTLU2021107543 %}, numerical testing here will instead consider the IEEE-RTS-96 test system, as readily accessed through [this website](https://www2.ee.washington.edu/research/pstca/rts/pg_tcarts.htm). 
 
 For context, the IEEE-RTS-96 data set was originally introduced in {% cite 780914 %} as a replacement for previously used benchmarking instances in the context of network reliability analysis, with the goal of being a versitile testing system within this domain, much how Garver-6 and IEEE-24 are regarded within the current literature landscape. Being a larger test instance than the latter two mentioned, however, the IEEE-RTS-96 test system includes 73 buses, 99 generators, and 121 existing lines. Because TEP considers the installation of new lines, the existing data will need to be modified to allow for the encorporation of potential lines that should could be installed. In addition, several other modifications should be considered when discussing the problem at hand. 
 
@@ -140,7 +140,7 @@ Some important modifications that will be taken into account relate to transmiss
 
 With regard to generation, all generators are assumed to be committed, however, start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation. For each new line $k \in\mathcal{E}^{\nu}$, the cost of installing the new line, $C_{k}^{\text{newline}}$, is obtained by multiplying the length of the line which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. 
 
-Moreover, IEEE-RTS-96, as provided by {% cite %}. The load on each bus is using the apparent power equation  
+Load on each bus is calculated using the apparent power equation  
 
 $$
 \begin{equation}
@@ -148,7 +148,7 @@ $$
 \end{equation}
 $$
 
-where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, the continous rating of each new line, as described in the model by $F_{k}$ for $k\in\mathcal{E}^{\nu}$, is obtained by multplying the load on each bus connected by three (?) to get three times the MVA, (?). In doing this, new amapacitied can be calculated to determine if zero, one, or two lines were required to cover the new demand. After increasing demand by three-fold, 198 new generators were considered to meet the expected future demand, as mentioned previously. Finally, susceptance was calculated using the reactance value of $X_{k}>0$ using
+where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, the continous rating of each new line, as described in the model by $F_{k}$ for $k\in\mathcal{E}^{\nu}$, is obtained by multplying the load on each bus by three to get three times the MVA, though changing the $F_{k}$ in this way does not appear to affect the solution compared to when the continuous ratings provided by {% cite 780914 %} are used, as this likely increases the values unnecessarily to alter the minimum solution. In doing this, however, new amapacitied can be calculated to determine if zero, one, or two lines were required to cover the new demand. In particular, the values found through the calculated ampacities provide insight into the cost of installing each new line, which is then used in the objective function described by (1) above. Then, after increasing demand by three-fold, 198 new generators were considered to meet the expected future demand, as mentioned previously. Finally, susceptance was calculated using the reactance value of $X_{k}>0$ with
 
 $$
 \begin{equation}
@@ -158,7 +158,7 @@ $$
 
 for each line $k\in\mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$. 
 
-The model provided in (1)-(10) was solved using Julia's JuMP with HiGHS initially, and with CPLEX later for comparison. A preference for HiGHS is taking over comparable MILP solvers such as CPLEX or Gurobi, as the former is readily available without the necessity of licensing, which may not be easily procured outside of academic institutions, or instutitions which have funding available for said licensing. Using an open-source, freely-available solver therefore allows a broader audence to reproduce the following results without restriction. With this being stated, however, an interesting and potentially insightful comparison considers the effectiveness of each solver as a means of ascertaining an understanding of which performs best in the context of this model and data instance. This comparison is briefly made in what follows, with the primarily focus in any case remaining with the result obtained from HiGHS due to the aforementioned reasons just provided. 
+The model provided in (1)-(10) was solved using Julia's JuMP with HiGHS initially, and with CPLEX later for comparison. A preference for HiGHS is taking over comparable MILP solvers such as CPLEX or Gurobi, as the former is readily available without the necessity of licensing, which may not be easily procured outside of academic institutions, or instutitions which have funding available for said licensing. Using an open-source, freely-available solver therefore allows a broader audience to reproduce the following results without restriction. With this being stated, however, an interesting and potentially insightful comparison considers the effectiveness of each solver as a means of ascertaining an understanding of which performs best in the context of this model and data instance. This comparison is briefly made in what follows, with the primarily focus in any case remaining with the result obtained from HiGHS due to the aforementioned reasons just provided. 
 
 ## Numerical Experiments
 
@@ -192,11 +192,19 @@ Therefore, the total contribution to the final cost from installation of new lin
 
 $$
 \begin{equation}
-\texttt{rel_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}|} = 0,
+\texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}|} = 0,
 \end{equation}
 $$
 
-where $\texttt{upper\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\_bound}$ is the dual objective value at iteration $t$. When calculating optimality gap, tolerance for the optimality gap at the default value of $0.01\%$ for HiGHS and $?\%$ for CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds. HiGHS computes simplex iterations using the dual simplex method by default, which was left using this option as well (?). 
+for HiGHS, and 
+
+$$
+\begin{equation}
+  \texttt{rel\\_hap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}| + \varepsilon} = 0
+\end{equation}
+$$
+
+for CPLEX with $\varepsilon = 1.0\times 10^{-10}$ small, where $\texttt{upper\\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\\_bound}$ is the dual objective value at iteration $t$. When calculating optimality gap, tolerance for the optimality gap at the default value of $0.01\%$ for both HiGHS and CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds.
 
 With the increased load considered, several generators were found to be set to their production limits. Remaining costs from the optimal objective value, totaling 
 
@@ -208,7 +216,7 @@ $$
 
 are a consequence of the generation output from the updated collection of generators. 
 
-As discussed previously, to keep up with the increase in demand a total of 198 new generators were installed. Despite all generators being assumed to be on and available to service the given load, 21 of the new generators were found to not be using any of their available capacity, while five were using some but not all of their available capacity, and 172 were using their full capacity. However, out of the total 297 generators we considered, $241$ were observed to be using their full capacity, while $12$ were using some but not all of their available capacity, and $44$ were not using any of their available capacity. These results are summarized in Table 2 below.  
+As discussed previously, to keep up with the increase in demand a total of 198 new generators were installed. Despite all generators being assumed to be on and available to service the given load, 21 of the new generators were found to not be using any of their available capacity, while five were using some but not all of their available capacity, and 172 were using their full capacity. However, out of the total 297 generators considered, $241$ were observed to be using their full capacity, while $12$ were using some but not all of their available capacity, and $44$ were not using any of their available capacity. These results are summarized in Table 2 below.  
 
 <table>
   <caption> <strong>Table 2: Generator output for newly added generators and all generators (all, some, or none).</strong></caption>
@@ -228,9 +236,6 @@ As discussed previously, to keep up with the increase in demand a total of 198 n
     <td> 241</td> <td> 12 </td> <td> 44 </td>
   </tr>
 </table>
-
-## Conclusion
-
 
 ## Acknowledgements 
 
