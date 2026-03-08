@@ -16,7 +16,7 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
     <td> <strong>Symbol</strong> </td> <td><strong>Description</strong> </td> 
   </tr>
   <tr>
-    <td colspan = "2" style = > Sets </td> 
+    <td colspan = "2" style = "text-align:center"> Sets </td> 
   </tr>
   <tr>
     <td> $\mathcal{G}$ </td> <td> Set of generators </td> 
@@ -130,7 +130,7 @@ For context, the IEEE-RTS-96 data set was originally introduced in {% cite 78091
 
 Some important modifications that will be taken into account relate to transmission and generation expansion. Ideally, transmission and generation expansion should be done simultaneously to ensure more robust grid operations, though this comes at an expense of a more complicated model, as noted previously. With this in mind, generation expansion should be considered in tandem to transmission planning (and will be) here, though, the amount of generating units will be fixed before the model is solved. To prescribe the fixed number of generating units that should be included within the data, it is assumed that over the next 10 years the load at each bus $n\in\mathcal{B}$ will be tripled, with the peak load being the only factor used to load the transmission lines. Moreover, it is also assumed that the load will remain constant. To service the increased load at each bus, the number of generators in the system will therefore be tripled, resulting in a total amount of 297 generating units. 
 
-With regard to generation, all generators are assumed to be committed, however, start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of \$900,000 per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of \$400,000 per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation. For each new line $k \in\mathcal{E}^{\nu}$, the cost of installing the new line, $C_{k}^{\text{newline}}$, is obtained by multiplying the length of the line which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. 
+With regard to generation, all generators are assumed to be committed, however, start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of $\$900,000$ per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of $\$400,000$ per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation. For each new line $k \in\mathcal{E}^{\nu}$, the cost of installing the new line, $C_{k}^{\text{newline}}$, is obtained by multiplying the length of the line which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. 
 
 Load on each bus is calculated using the apparent power equation  
 
@@ -155,13 +155,13 @@ Generating data for the new lines and generators as described in the previous se
 Solutions were acquired using an M1 MacBook Pro with 16GB of RAM. Solving initially with HiGHS returns 12 lines installed, with a particular solution instance being: 
 
 \begin{equation}
-  \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\} =: \mathcal{I}, 
+  \{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\} =: \mathcal{I}, 
 \end{equation}
 
 in which $k\in\mathbb{Z}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alternative solution
 
 \begin{equation}
-  \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\}
+  \{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\}
 \end{equation}
 
 with the same optimal objective value and installation costs, suggesting that the solution obtained by HiGHS and CPLEX may not be unique. Regardless, for each line in $\mathcal{I}$, their respective installation costs $C_{k}^{\text{newline}}$ entail that 
@@ -173,16 +173,16 @@ with the same optimal objective value and installation costs, suggesting that th
 Therefore, the total contribution to the final cost from installation of new lines is $\\$1.1500\times10^{8}$. This indicates that installation of new lines contributed a majority of the cost associated with the optimal objective value, as the optimal cost returned was approximately $\\$1.1586\times10^{8}$, with relative optimality gap
 
 \begin{equation}
-\texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}|} = 0,
+\texttt{rel\_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}|} = 0,
 \end{equation}
 
 for HiGHS, and 
 
 \begin{equation}
-  \texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}| + \varepsilon} = 0
+  \texttt{rel\_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}| + \varepsilon} = 0
 \end{equation}
 
-for CPLEX with $\varepsilon = 1.0\times 10^{-10}$ small, where $\texttt{upper\\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\\_bound}$ is the dual objective value at iteration $t$. When calculating the optimality gap as shown above, tolerance was set at the default value of $0.01\%$ for both HiGHS and CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds.
+for CPLEX with $\varepsilon = 1.0\times 10^{-10}$ small, where $\texttt{upper\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\_bound}$ is the dual objective value at iteration $t$. When calculating the optimality gap as shown above, tolerance was set at the default value of $0.01\%$ for both HiGHS and CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds.
 
 With the increased load considered, several generators were found to be set to their production limits. Remaining costs from the optimal objective value, totaling 
 
