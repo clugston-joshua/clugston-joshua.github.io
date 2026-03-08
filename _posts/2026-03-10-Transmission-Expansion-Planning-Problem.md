@@ -91,11 +91,9 @@ where $M$ is often chosen to be large enough so that the polytope defined by the
 
 In the above model, since $P_{g}$ is a variable describing the real power output from generator $g\in \mathcal{G}$, and $w_{k}$ is the binary decision pertaining to the installation of new line $k\in\mathcal{E}^{\nu}$, the objective function (1) calculates the total cost of installing a new line $k$ while simultaneously considering the total cost of power production (MW) for generator $g$. In addition, (2) ensures that each generator $g\in\mathcal{G}$ has an upper limit on the amount of power it may produce, so as to not exceed its total capacity, while also enforcing only non-negative amounts of power are produced by each generator. Similarly, transmission lines must also adhere to their rated thermal limit. To enforce this, (3) limits power flow, $P_{k}$, for each existing transmission line $k\in\mathcal{E}^{\epsilon}$ so that maximum flow capacity, $F_{k}$, is not exceeded. Power flow $P_{k}$ on each line is then further modeled through the DC power flow equations (4), which utilizes the susceptance of line $k$ and differences of phase angles for each sending bus $n^{s}$ and receiving bus $n^{r}$. In contrast to (3), however, which describes the thermal limit of existing lines, (5) enforces thermal limit ratings $F_{k}$ to be satisfied for new line $k\in \mathcal{E}^{k}$, only if $k$ is installed (or, equivalently, when $w_{k} = 1$). It should then be the case that (9) indicates that line $k\in\mathcal{E}^{\nu}$ is to be installed provided that $w_{k}=1$, whereas line $k$ is not to be installed should instead $w_{k}=0$. Moreover, whenever the latter is true, it necessarily follows from (5) that $P_{k}=0$. Normally, however, TEP also considers bilinear terms associated with Kirchoff's second law, which significantly increases the complexity of practically solving the TEP mathematical programming model. Due to the difficulties that may arise when attempting to incorporate non-convexities into a mathematical program, measures were taken to reformulate the constraints which regulate the line flow behavior according to Kirchoff's second law, 
 
-$$
 \begin{equation}
   P_{k} - B_{k}w_{k}(\delta_{n}^{r} - \delta_{n}^{s}) = 0,\ \text{ for each } k \in \mathcal{E}^{\nu}, 
 \end{equation}
-$$
 
 while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), while Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
 
@@ -105,28 +103,22 @@ The Transmission Expansion Planning Problem considered above seeks to find the l
 
 Many authors which study TEP have employed reformulations and relaxations as a means of tackling the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large unbounding constants, $M$. By removing nonlinearities contained in these constraints, TEP can thereby be presented as a mixed-integer linear program (MILP) so that well-known exact methods such as Branch and Bound, Branch and Cut, Column Generation, or some variation and combinations of these methods can be applied. In addition, there are many techniques for exactly reformulating or approximating the AC line power flow constraints 
 
-$$
 \begin{alignat}{1}
   P_{k} &= G_{ij}|V_{i}|^{2} - |V_{i}||V_{j}|(G_{ij}\cos(\delta_{i}-\delta_{j})+ B_{ij}\sin(\delta_{i}-\delta_{j})),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$},\\
   Q_{k} &= -B_{ij}|V_{i}|^{2} - |V_{i}||V_{j}|(G_{ij}\sin(\delta_{i}-\delta_{j}) - B_{ij}\cos(\delta_{i}-\delta_{j})),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$}
 \end{alignat}
-$$
 
 which attempt to also resolve difficulties that are posed by trignometric and non-smooth functions contained therein. However, a common approach to overcome such difficulties posed by the AC power flow constraints is as done above in (4), whereby an approximation is considered in place of an exact reformulation. For instance, as done in the preceding, a linear approximation of the AC power flow equation is performed using DC power flow through first assuming that the difference in phase angles 
 
-$$
 \begin{equation*}
   \delta_{i} - \delta_{j} \approx 0\ \text{ for all $k\in\mathcal{E}^{\epsilon}$},
 \end{equation*}
-$$
 
 secondly assuming the voltages are such that $V_{i} = V_{j} = 1$ for all $i$ and $j$, and then thirdly further assuming that $G_{k} \approx 0$ for all $k$, particularly by additionally positing that resistance for line $k$ is much smaller than reactance for $k$. In assuming such, it is the case that $\cos(\delta_{i}-\delta_{j}) \approx 1$, whereas $\sin(\delta_{i}- \delta_{j})\approx \delta_{i}- \delta_{j}$, so that 
 
-$$
 \begin{equation}
   P_{k} = B_{ij}(\delta_{i}-\delta_{j}),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$}
 \end{equation}
-$$
 
 for real power flow, aligning with (4) above after disregarding reactive power flow entirely.
 
@@ -142,19 +134,15 @@ With regard to generation, all generators are assumed to be committed, however, 
 
 Load on each bus is calculated using the apparent power equation  
 
-$$
 \begin{equation}
   S = \sqrt{P^{2} + Q^{2}},
 \end{equation}
-$$
 
 where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, the continous rating of each new line, as described in the model by $F_{k}$ for $k\in\mathcal{E}^{\nu}$, is obtained by multiplying the load on each bus by three to get three times the MVA, though changing the $F_{k}$ in this way does not appear to affect the solution compared to when the continuous ratings provided by {% cite 780914 %} are used, as this likely increases the values unnecessarily to alter the minimum solution. In doing this, however, new ampacities can be calculated to determine if zero, one, or two lines were required to cover the new demand. In particular, the values found through the calculated ampacities provide insight into the cost of installing each new line, which is then used in the objective function described by (1) above. Then, after increasing demand by three-fold, 198 new generators were considered to meet the expected future demand, as mentioned previously. Finally, susceptance was calculated using the reactance value of $X_{k}>0$ with
 
-$$
 \begin{equation}
   B_{k} = \frac{1}{X_{k}}
 \end{equation}
-$$
 
 for each line $k\in\mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$. 
 
@@ -166,53 +154,41 @@ Generating data for the new lines and generators as described in the previous se
 
 Solutions were acquired using an M1 MacBook Pro with 16GB of RAM. Solving initially with HiGHS returns 12 lines installed, with a particular solution instance being: 
 
-$$
 \begin{equation}
   \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\} =: \mathcal{I}, 
 \end{equation}
-$$
 
 in which $k\in\mathbb{Z}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alternative solution
 
-$$
 \begin{equation}
   \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\}
 \end{equation}
-$$
 
 with the same optimal objective value and installation costs, suggesting that the solution obtained by HiGHS and CPLEX may not be unique. Regardless, for each line in $\mathcal{I}$, their respective installation costs $C_{k}^{\text{newline}}$ entail that 
 
-$$
 \begin{equation}
 \sum_{k\in \mathcal{I}}C_{k}^{\text{newline}} = 1.1500\times10^{8}.
 \end{equation}
-$$
 
 Therefore, the total contribution to the final cost from installation of new lines is $\\$1.1500\times10^{8}$. This indicates that installation of new lines contributed a majority of the cost associated with the optimal objective value, as the optimal cost returned was approximately $\\$1.1586\times10^{8}$, with relative optimality gap
 
-$$
 \begin{equation}
 \texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}|} = 0,
 \end{equation}
-$$
 
 for HiGHS, and 
 
-$$
 \begin{equation}
   \texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}| + \varepsilon} = 0
 \end{equation}
-$$
 
 for CPLEX with $\varepsilon = 1.0\times 10^{-10}$ small, where $\texttt{upper\\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\\_bound}$ is the dual objective value at iteration $t$. When calculating the optimality gap as shown above, tolerance was set at the default value of $0.01\%$ for both HiGHS and CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds.
 
 With the increased load considered, several generators were found to be set to their production limits. Remaining costs from the optimal objective value, totaling 
 
-$$
 \begin{equation}
   \$1.1586\times10^{8} -\$1.1500\times10^{8} \approx \$8.6\times10^{5},
 \end{equation}
-$$
 
 are a consequence of the generation output from the updated collection of generators. 
 
@@ -236,6 +212,10 @@ As discussed previously, to keep up with the increase in demand, a total of 198 
     <td> 241</td> <td> 12 </td> <td> 44 </td>
   </tr>
 </table>
+
+Additionally, **Figure 1** displays these findings, showing the percentage of generation output by each individual generator, $g$, and overall output percentage for all generating units available. 
+
+![Figure 1](/figures/generators.png)
 
 ## Acknowledgements 
 
