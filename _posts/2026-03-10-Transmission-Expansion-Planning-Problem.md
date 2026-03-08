@@ -219,4 +219,8 @@ Additionally, **Figure 1** displays these findings, showing the percentage of ge
 
 ## Acknowledgements 
 
+## References
+
+{% bibliography --cited %}
+
 
