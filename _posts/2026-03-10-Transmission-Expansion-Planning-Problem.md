@@ -73,7 +73,8 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
 
 Using the sets, variables, and parameters previously outlined in **Table 1**, TEP is often mathematically written, in DC form, as follows:
 
-\begin{align}
+$$
+\begin{alignat}{1}
     \text{minimize }\ & \sum_{g\in\mathcal{G}}P_{g}C_{g} + \sum_{k\in\mathcal{E}^{\nu}}C_{k}^{\text{newline}}w_{k},\\ 
     \text{subject to}\ & 0\leq P_{g}\leq P_{g}^{\max},\quad \text{ for all } g\in \mathcal{G}, \\
     & -F_{k}\leq P_{k} \leq F_{k}, \quad \text{ for all } k\in \mathcal{E}^{\epsilon} \\ 
@@ -83,7 +84,8 @@ Using the sets, variables, and parameters previously outlined in **Table 1**, TE
     & P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}] \leq (1-w_{k})M,\ \text{ for all } k\in \mathcal{E}^{\nu},\\ 
     & \sum_{k=n^{s}}P_{k} - \sum_{k=n^{r}}P_{k} = \sum_{g=n}P_{g} - d_{n},\quad \text{ for all } n\in \mathcal{B}\\ 
     & w_{k} \in \{0,1\},\quad \text{ for all } k\in \mathcal{E}^{\nu},
-\end{align}
+\end{alignat}
+$$
 
 where $M$ is often chosen to be large enough so that the polytope defined by the convex hull of the feasible region permits high quality solutions without impacting solution times. One possible strategy for selecting $M$ is to do so in a fashion which ensures that the constraints involving $M$ define the tightest-fitting inequality for the feasible region described by TEP. By choosing $M$ such that the preceding is true, it would necessarily follow that the resulting $M$ would need to be the minimum $M$ required to acquire high-quality feasible solutions, while still providing benefits from the provided formulation. 
 
@@ -101,10 +103,12 @@ The Transmission Expansion Planning Problem considered above seeks to find the l
 
 Many authors which study TEP have employed reformulations and relaxations as a means of tackling the difficulties presented by its original AC formulation. Several common modifications are also utilized in (1)-(9) above, specifically when considering the DC linear approximation and reformulation of bilinear terms in Kirchoff's law to include large unbounding constants, $M$. By removing nonlinearities contained in these constraints, TEP can thereby be presented as a mixed-integer linear program (MILP) so that well-known exact methods such as Branch and Bound, Branch and Cut, Column Generation, or some variation and combinations of these methods can be applied. In addition, there are many techniques for exactly reformulating or approximating the AC line power flow constraints 
 
+$$
 \begin{alignat}{1}
   P_{k} &= G_{ij}|V_{i}|^{2} - |V_{i}||V_{j}|(G_{ij}\cos(\delta_{i}-\delta_{j})+ B_{ij}\sin(\delta_{i}-\delta_{j})),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$},\\
   Q_{k} &= -B_{ij}|V_{i}|^{2} - |V_{i}||V_{j}|(G_{ij}\sin(\delta_{i}-\delta_{j}) - B_{ij}\cos(\delta_{i}-\delta_{j})),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$}
 \end{alignat}
+$$
 
 which attempt to also resolve difficulties that are posed by trignometric and non-smooth functions contained therein. However, a common approach to overcome such difficulties posed by the AC power flow constraints is as done above in (4), whereby an approximation is considered in place of an exact reformulation. For instance, as done in the preceding, a linear approximation of the AC power flow equation is performed using DC power flow through first assuming that the difference in phase angles 
 
@@ -128,7 +132,7 @@ For context, the IEEE-RTS-96 data set was originally introduced in {% cite 78091
 
 Some important modifications that will be taken into account relate to transmission and generation expansion. Ideally, transmission and generation expansion should be done simultaneously to ensure more robust grid operations, though this comes at an expense of a more complicated model, as noted previously. With this in mind, generation expansion should be considered in tandem to transmission planning (and will be) here, though, the amount of generating units will be fixed before the model is solved. To prescribe the fixed number of generating units that should be included within the data, it is assumed that over the next 10 years the load at each bus $n\in\mathcal{B}$ will be tripled, with the peak load being the only factor used to load the transmission lines. Moreover, it is also assumed that the load will remain constant. To service the increased load at each bus, the number of generators in the system will therefore be tripled, resulting in a total amount of 297 generating units. 
 
-With regard to generation, all generators are assumed to be committed, however, start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of $\$900,000$ per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of $\$400,000$ per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation. For each new line $k \in\mathcal{E}^{\nu}$, the cost of installing the new line, $C_{k}^{\text{newline}}$, is obtained by multiplying the length of the line which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. 
+With regard to generation, all generators are assumed to be committed, however, start-up, shutdown, and no-load costs are not considered. For new transmission lines, each new line is assumed to be installed parallel to existing transmission lines, with each new line considered having similar parameters as the lines they are parallel to. In particular, for each line $k\in\mathcal{E}^{\nu}$, the susceptance on line $k$, $B_{k}$, is assumed to be equal to the line in which it runs parallel to. Moreover, from this construction, candidate lines should have the same sending bus, $s$, and receiving bus, $r$, as the lines they are parallel to. Two types of candidate lines are to possibly be installed: lines with 230 kV rating and lines with 138 kV rating. Newly installed lines with 230 kV rating will incur a cost of $\\$900,000$ per mile installed, whereas newly installed lines with 138 kV rating will contribute a cost of $\\$400,000$ per mile installed. On the other hand, transformers are assumed to have infinite rating and do not require upgrading over the system's lifetime. In total, data is comprised of 229 lines overall, with 109 being new lines in the modified data for potential installation. For each new line $k \in\mathcal{E}^{\nu}$, the cost of installing the new line, $C_{k}^{\text{newline}}$, is obtained by multiplying the length of the line which $k$ is parallel to by the cost of installation of the new line, based on the line rating distinction previously described. 
 
 Load on each bus is calculated using the apparent power equation  
 
@@ -214,7 +218,7 @@ As discussed previously, to keep up with the increase in demand, a total of 198 
 Additionally, **Figure 1** displays these findings, and further shows the percentage of generation output by each individual generator, $g$, and overall output percentage for all generating units available.
 
 <figure>
-      <figcaption><b>Figure 1</b>: <font style="color:yellow">Yellow</span> bars correspond to generators which are using some of their available capacity, <span style="color:white">white</span> dots correspond to generators which are using none of their available capacity, <span style="color:magenta">magenta</span> dashed bars correspond to generators which are using all of their capacity, and the <span style="color:white">white</span> horizontal line demonstrates the overall percentage of available capacity used across all generating units.</figcaption>
+      <figcaption><b>Figure 1</b>: <span style="color:yellow">Yellow</span> bars correspond to generators which are using some of their available capacity, <span style="color:white">white</span> dots correspond to generators which are using none of their available capacity, <span style="color:magenta">magenta</span> dashed bars correspond to generators which are using all of their capacity, and the <span style="color:white">white</span> horizontal line demonstrates the overall percentage of available capacity used across all generating units.</figcaption>
     <img src="/figures/generators.png"
          alt="generators">
 </figure>
