@@ -2,7 +2,7 @@
 layout: post
 ---
 
-The primary purpose of the electrical grid is to safely and reliably transport electricity from electrical power generation units to consumers. To this end, electrical grid infrastructure's primary components consists of several types of power generating units, called "generators," which, for instance, use steam, water, wind, solar, fossil fuels, and nuclear energy to create power, in addition to devices which are used for appropriately reducing or increasing voltage as electricity travels to its end destination, lines for transporting the generated energy, and energy storage facilities that allow excess generated energy to be used at a later time. Designation of resources to further developement of grid infrastruture technology is based off of projected demand for energy, whereby improvements are made to existing grid configurations in order to ensure the reliability and safety of the transportation of energy under predicted increased demand.  
+The primary purpose of the electrical grid is to safely and reliably transport electricity from electrical power generation units to consumers. To this end, electrical grid infrastructure's primary components consists of several types of power generating units, called "generators," which use steam, water, wind, solar, fossil fuels, and nuclear energy to create power, in addition to devices which are used for appropriately reducing or increasing voltage as electricity travels to its end destination, lines for transporting the generated energy, and energy storage facilities that allow excess generated energy to be used at a later time. Designation of resources to further developement of grid infrastruture technology is based off of projected demand for energy, whereby improvements are made to existing grid configurations in order to ensure the reliability and safety of the transportation of energy under predicted increased demand.  
 
 Common problems which seek to aid in planning of grid improvements often focus on increasing transmission and generation aspects of existing grid infrastructure. In which case, a mathematical model can be developed to assess the best possible configuration resulting in an adequate number of either generators or lines to be installed that provides least costs and proper coverage. However, it is generally observed that such exploration of generator and line installation configurations are conducted separately so as to avoid an overly complicated mathematical model. Particularly, for planning related to line expansion, a so-called *transmission expansion planning problem* (TEP) is solved, whereas a generation expansion planning problem is to be solved for planning related to generation. In this blog post, the former is explored, and a primary focus is placed on an application of TEP which utilizes a moderately-sized and well-known test system. 
 
@@ -73,8 +73,7 @@ In an abstract sense, TEP is modeled as an undirected graph $(V,E)$ with edge se
 
 Using the sets, variables, and parameters previously outlined in **Table 1**, TEP is often mathematically written, in DC form, as follows:
 
-$$
-  \begin{alignat}{1}
+\begin{align}
     \text{minimize }\ & \sum_{g\in\mathcal{G}}P_{g}C_{g} + \sum_{k\in\mathcal{E}^{\nu}}C_{k}^{\text{newline}}w_{k},\\ 
     \text{subject to}\ & 0\leq P_{g}\leq P_{g}^{\max},\quad \text{ for all } g\in \mathcal{G}, \\
     & -F_{k}\leq P_{k} \leq F_{k}, \quad \text{ for all } k\in \mathcal{E}^{\epsilon} \\ 
@@ -84,18 +83,17 @@ $$
     & P_{k}-B_{k}[\delta_{n}^{r}-\delta_{n}^{s}] \leq (1-w_{k})M,\ \text{ for all } k\in \mathcal{E}^{\nu},\\ 
     & \sum_{k=n^{s}}P_{k} - \sum_{k=n^{r}}P_{k} = \sum_{g=n}P_{g} - d_{n},\quad \text{ for all } n\in \mathcal{B}\\ 
     & w_{k} \in \{0,1\},\quad \text{ for all } k\in \mathcal{E}^{\nu},
-  \end{alignat}
-$$
+\end{align}
 
 where $M$ is often chosen to be large enough so that the polytope defined by the convex hull of the feasible region permits high quality solutions without impacting solution times. One possible strategy for selecting $M$ is to do so in a fashion which ensures that the constraints involving $M$ define the tightest-fitting inequality for the feasible region described by TEP. By choosing $M$ such that the preceding is true, it would necessarily follow that the resulting $M$ would need to be the minimum $M$ required to acquire high-quality feasible solutions, while still providing benefits from the provided formulation. 
 
-In the above model, since $P_{g}$ is a variable describing the real power output from generator $g\in \mathcal{G}$, and $w_{k}$ is the binary decision pertaining to the installation of new line $k\in\mathcal{E}^{\nu}$, the objective function (1) calculates the total cost of installing a new line $k$ while simultaneously considering the total cost of power production (MW) for generator $g$. In addition, (2) ensures that each generator $g\in\mathcal{G}$ has an upper limit on the amount of power it may produce, so as to not exceed its total capacity, while also enforcing only non-negative amounts of power are produced by each generator. Similarly, transmission lines must also adhere to their rated thermal limit. To enforce this, (3) limits power flow, $P_{k}$, for each existing transmission line $k\in\mathcal{E}^{\epsilon}$ so that maximum flow capacity, $F_{k}$, is not exceeded. Power flow $P_{k}$ on each line is then further modeled through the DC power flow equations (4), which utilizes the susceptance of line $k$ and differences of phase angles for each sending bus $n^{s}$ and receiving bus $n^{r}$. In contrast to (3), however, which describes the thermal limit of existing lines, (5) enforces thermal limit ratings $F_{k}$ to be satisfied for new line $k\in \mathcal{E}^{k}$, only if $k$ is installed (or, equivalently, when $w_{k} = 1$). It should then be the case that (9) indicates that line $k\in\mathcal{E}^{\nu}$ is to be installed provided that $w_{k}=1$, whereas line $k$ is not to be installed should instead $w_{k}=0$. Moreover, whenever the latter is true, it necessarily follows from (5) that $P_{k}=0$. Normally, however, TEP also considers bilinear terms associated with Kirchoff's second law, which significantly increases the complexity of practically solving the TEP mathematical programming model. Due to the difficulties that may arise when attempting to incorporate non-convexities into a mathematical program, measures were taken to reformulate the constraints which regulate the line flow behavior according to Kirchoff's second law, 
+In the above model, since $P_{g}$ is a variable describing the real power output from generator $g\in \mathcal{G}$, and $w_{k}$ is the binary decision pertaining to the installation of new line $k\in\mathcal{E}^{\nu}$, the objective function (1) calculates the total cost of installing a new line $k$ while simultaneously considering the total cost of power production (MW) for generator $g$. In addition, (2) ensures that each generator $g\in\mathcal{G}$ has an upper limit on the amount of power it may produce, so as to not exceed its total capacity, while also enforcing only non-negative amounts of power are produced by each generator. Similarly, transmission lines must also adhere to their rated thermal limit. To enforce this, (3) limits power flow, $P_{k}$, for each existing transmission line $k\in\mathcal{E}^{\epsilon}$ so that maximum flow capacity, $F_{k}$, is not exceeded. Power flow $P_{k}$ on each line is then further modeled through the DC power flow equations (4), which utilizes the susceptance of line $k$ and differences of phase angles for each sending bus $n^{s}$ and receiving bus $n^{r}$. In contrast to (3), however, which describes the thermal limit of existing lines, (5) enforces thermal limit ratings $F_{k}$ to be satisfied for new line $k\in \mathcal{E}^{\nu}$, only if $k$ is installed (or, equivalently, when $w_{k} = 1$). It should then be the case that (9) indicates that line $k\in\mathcal{E}^{\nu}$ is to be installed provided that $w_{k}=1$, whereas line $k$ is not to be installed should instead $w_{k}=0$. Moreover, whenever the latter is true, it necessarily follows from (5) that $P_{k}=0$. Normally, however, TEP also considers bilinear terms associated with Kirchoff's second law, which significantly increases the complexity of practically solving the TEP mathematical programming model. Due to the difficulties that may arise when attempting to incorporate non-convexities into a mathematical program, measures were taken to reformulate the constraints which regulate the line flow behavior according to Kirchoff's second law, 
 
 \begin{equation}
   P_{k} - B_{k}w_{k}(\delta_{n}^{r} - \delta_{n}^{s}) = 0,\ \text{ for each } k \in \mathcal{E}^{\nu}, 
 \end{equation}
 
-while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), while Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
+while further ensuring that the flows on each line to be installed, $k\in \mathcal{E}^{\nu}$, are within their specified bounds, $F_{k}$. To this end, a linear reformulation of (10) was constructed to obtain (6)-(7), in which Kirchoff's second law (10) is expressed in disjunctive form. Lastly, nodal power balance is ensured through (8). The ultimate goal of solving (1)-(9) is, therefore, to minimize costs of operations and installations subject to the physical constraints previously outlined. 
 
 ## Brief Background and DC Power Flow Derivation
 
@@ -117,7 +115,7 @@ which attempt to also resolve difficulties that are posed by trignometric and no
 secondly assuming the voltages are such that $V_{i} = V_{j} = 1$ for all $i$ and $j$, and then thirdly further assuming that $G_{k} \approx 0$ for all $k$, particularly by additionally positing that resistance for line $k$ is much smaller than reactance for $k$. In assuming such, it is the case that $\cos(\delta_{i}-\delta_{j}) \approx 1$, whereas $\sin(\delta_{i}- \delta_{j})\approx \delta_{i}- \delta_{j}$, so that 
 
 \begin{equation}
-  P_{k} = B_{ij}(\delta_{i}-\delta_{j}),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$}
+  P_{k} = B_{ij}(\delta_{i}-\delta_{j}),\ \text{ for all $k\in\mathcal{E}^{\epsilon}$},
 \end{equation}
 
 for real power flow, aligning with (4) above after disregarding reactive power flow entirely.
@@ -126,7 +124,7 @@ for real power flow, aligning with (4) above after disregarding reactive power f
 
 There are several assumptions, particularly with respect to not only modeling aspects mentioned previously but also the data used for defining the TEP instance, that are considered. While, arguably the Garver-6 and IEEE-24 test systems have been the most popular instances for testing TEP methodology according to {% cite MUTLU2021107543 %}, numerical testing here will instead consider the IEEE-RTS-96 test system, as readily accessed through [this website](https://www2.ee.washington.edu/research/pstca/rts/pg_tcarts.htm). 
 
-For context, the IEEE-RTS-96 data set was originally introduced in {% cite 780914 %} as a replacement for previously used benchmarking instances in the context of network reliability analysis, with the goal of being a versitile testing system within this domain, much how Garver-6 and IEEE-24 are regarded within the current literature landscape. Being a larger test instance than the latter two mentioned, however, the IEEE-RTS-96 test system includes 73 buses, 99 generators, and 121 existing lines. Because TEP considers the installation of new lines, the existing data will need to be modified to allow for the incorporation of potential lines that should could be installed. In addition, several other modifications should be considered when discussing the problem at hand. 
+For context, the IEEE-RTS-96 data set was originally introduced in {% cite 780914 %} as a replacement for previously used benchmarking instances in the context of network reliability analysis, with the goal of being a versitile testing system within this domain, much how Garver-6 and IEEE-24 are regarded within the current literature landscape. Being a larger test instance than the latter two mentioned, however, the IEEE-RTS-96 test system includes 73 buses, 99 generators, and 121 existing lines. Because TEP considers the installation of new lines, the existing data will need to be modified to allow for the incorporation of potential lines that should be installed. In addition, several other modifications should be considered when discussing the problem at hand. 
 
 Some important modifications that will be taken into account relate to transmission and generation expansion. Ideally, transmission and generation expansion should be done simultaneously to ensure more robust grid operations, though this comes at an expense of a more complicated model, as noted previously. With this in mind, generation expansion should be considered in tandem to transmission planning (and will be) here, though, the amount of generating units will be fixed before the model is solved. To prescribe the fixed number of generating units that should be included within the data, it is assumed that over the next 10 years the load at each bus $n\in\mathcal{B}$ will be tripled, with the peak load being the only factor used to load the transmission lines. Moreover, it is also assumed that the load will remain constant. To service the increased load at each bus, the number of generators in the system will therefore be tripled, resulting in a total amount of 297 generating units. 
 
@@ -146,7 +144,7 @@ where real power $P$ is in MW and reactive power $Q$ is in MVAR. Additionally, t
 
 for each line $k\in\mathcal{E}^{\nu}\sqcup \mathcal{E}^{\epsilon}$. 
 
-The model provided in (1)-(10) was solved using Julia's JuMP with HiGHS initially, and with CPLEX later for comparison. A preference for HiGHS is taking over comparable MILP solvers such as CPLEX or Gurobi, as the former is readily available without the necessity of licensing, which may not be easily procured outside of academic institutions, or institutions which have funding available for said licensing. Using an open-source, freely-available solver therefore allows a broader audience to reproduce the following results without restriction. With this being stated, however, an interesting and potentially insightful comparison considers the effectiveness of each solver as a means of ascertaining an understanding of which performs best in the context of this model and data instance. This comparison is briefly made in what follows, with the primary focus in any case remaining with the result obtained from HiGHS due to the aforementioned reasons just provided. 
+The model provided in (1)-(9) was solved using Julia's JuMP with HiGHS initially, and with CPLEX later for comparison. A preference for HiGHS is taken over comparable MILP solvers such as CPLEX or Gurobi, as the former is readily available without the necessity of licensing, which may not be easily procured outside of academic institutions, or institutions which have funding available for said licensing. Using an open-source, freely-available solver therefore allows a broader audience to reproduce the following results without restriction. With this being stated, however, an interesting and potentially insightful comparison considers the effectiveness of each solver as a means of ascertaining an understanding of which performs best in the context of this model and data instance. This comparison is briefly made in what follows, with the primary focus in any case remaining with the result obtained from HiGHS due to the aforementioned reasons just provided. 
 
 ## Numerical Experiments
 
@@ -158,7 +156,7 @@ Solutions were acquired using an M1 MacBook Pro with 16GB of RAM. Solving initia
   \{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\} =: \mathcal{I}, 
 \end{equation}
 
-in which $k\in\mathbb{Z}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alternative solution
+in which $k\in\mathbb{Z}_{\geq 1}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alternative solution
 
 \begin{equation}
   \{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\}
@@ -213,11 +211,14 @@ As discussed previously, to keep up with the increase in demand, a total of 198 
   </tr>
 </table>
 
-Additionally, **Figure 1** displays these findings, showing the percentage of generation output by each individual generator, $g$, and overall output percentage for all generating units available. 
+Additionally, **Figure 1** displays these findings, and further shows the percentage of generation output by each individual generator, $g$, and overall output percentage for all generating units available.
 
-![Figure 1](/figures/generators.png)
-
-## Acknowledgements 
+<figure>
+      <figcaption><b>Figure 1</b>: <font style="color:yellow">Yellow</span> bars correspond to generators which are using some of their available capacity, <span style="color:white">white</span> dots correspond to generators which are using none of their available capacity, <span style="color:magenta">magenta</span> dashed bars correspond to generators which are using all of their capacity, and the <span style="color:white">white</span> horizontal line demonstrates the overall percentage of available capacity used across all generating units.</figcaption>
+    <img src="/figures/generators.png"
+         alt="generators">
+</figure>
+<!-- ![Figure 1](/figures/generators.png) -->
 
 ## References
 
