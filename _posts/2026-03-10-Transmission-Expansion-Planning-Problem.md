@@ -87,7 +87,7 @@ $$
 \end{alignat}
 $$
 
-where $M$ is often chosen to be large enough so that the polytope defined by the convex hull of the feasible region permits high quality solutions without impacting solution times. One possible strategy for selecting $M$ is to do so in a fashion which ensures that the constraints involving $M$ define the tightest-fitting inequality for the feasible region described by TEP. By choosing $M$ such that the preceding is true, it would necessarily follow that the resulting $M$ would need to be the minimum $M$ required to acquire high-quality feasible solutions, while still providing benefits from the provided formulation. 
+where $M$ is often chosen to be large enough so that the polyhedral set defined by the convex hull of the feasible region permits high quality solutions without impacting solution times. One possible strategy for selecting $M$ is to do so in a fashion which ensures that the constraints involving $M$ define the tightest-fitting inequality for the feasible region described by TEP. By choosing $M$ such that the preceding is true, it would necessarily follow that the resulting $M$ would need to be the minimum $M$ required to acquire high-quality feasible solutions, while still providing benefits from the provided formulation. 
 
 In the above model, since $P_{g}$ is a variable describing the real power output from generator $g\in \mathcal{G}$, and $w_{k}$ is the binary decision pertaining to the installation of new line $k\in\mathcal{E}^{\nu}$, the objective function (1) calculates the total cost of installing a new line $k$ while simultaneously considering the total cost of power production (MW) for generator $g$. In addition, (2) ensures that each generator $g\in\mathcal{G}$ has an upper limit on the amount of power it may produce, so as to not exceed its total capacity, while also enforcing only non-negative amounts of power are produced by each generator. Similarly, transmission lines must also adhere to their rated thermal limit. To enforce this, (3) limits power flow, $P_{k}$, for each existing transmission line $k\in\mathcal{E}^{\epsilon}$ so that maximum flow capacity, $F_{k}$, is not exceeded. Power flow $P_{k}$ on each line is then further modeled through the DC power flow equations (4), which utilizes the susceptance of line $k$ and differences of phase angles for each sending bus $n^{s}$ and receiving bus $n^{r}$. In contrast to (3), however, which describes the thermal limit of existing lines, (5) enforces thermal limit ratings $F_{k}$ to be satisfied for new line $k\in \mathcal{E}^{\nu}$, only if $k$ is installed (or, equivalently, when $w_{k} = 1$). It should then be the case that (9) indicates that line $k\in\mathcal{E}^{\nu}$ is to be installed provided that $w_{k}=1$, whereas line $k$ is not to be installed should instead $w_{k}=0$. Moreover, whenever the latter is true, it necessarily follows from (5) that $P_{k}=0$. Normally, however, TEP also considers bilinear terms associated with Kirchoff's second law, which significantly increases the complexity of practically solving the TEP mathematical programming model. Due to the difficulties that may arise when attempting to incorporate non-convexities into a mathematical program, measures were taken to reformulate the constraints which regulate the line flow behavior according to Kirchoff's second law, 
 
@@ -157,13 +157,13 @@ Generating data for the new lines and generators as described in the previous se
 Solutions were acquired using an M1 MacBook Pro with 16GB of RAM. Solving initially with HiGHS returns 12 lines installed, with a particular solution instance being: 
 
 \begin{equation}
-  \{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\} =: \mathcal{I}, 
+  \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{11, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\} =: \mathcal{I}, 
 \end{equation}
 
 in which $k\in\mathbb{Z}_{\geq 1}$ is used to indicate the index of line $k\in\mathcal{E}^{\nu}$ with orientation from bus $s\in\mathcal{B}$ to bus $r\in\mathcal{B}$. However, solving using CPLEX in place of HiGHS results in an alternative solution
 
 \begin{equation}
-  \{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\} = \{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\}
+  \\{k \in\mathcal{E}^{\nu} : w_{k}^{\star} = 1\\} = \\{12, 13, 14, 28, 41, 51, 52, 53, 85, 86, 87, 97\\}
 \end{equation}
 
 with the same optimal objective value and installation costs, suggesting that the solution obtained by HiGHS and CPLEX may not be unique. Regardless, for each line in $\mathcal{I}$, their respective installation costs $C_{k}^{\text{newline}}$ entail that 
