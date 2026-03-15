@@ -112,9 +112,9 @@ $$
 
 which attempt to also resolve difficulties that are posed by trignometric and non-smooth functions contained therein. However, a common approach to overcome such difficulties posed by the AC power flow constraints is as done above in (4), whereby an approximation is considered in place of an exact reformulation. For instance, as done in the preceding, a linear approximation of the AC power flow equation is performed using DC power flow through first assuming that the difference in phase angles 
 
-\begin{equation*}
+\begin{equation}
   \delta_{i} - \delta_{j} \approx 0\ \text{ for all $k\in\mathcal{E}^{\epsilon}$},
-\end{equation*}
+\end{equation}
 
 secondly assuming the voltages are such that $V_{i} = V_{j} = 1$ for all $i$ and $j$, and then thirdly further assuming that $G_{k} \approx 0$ for all $k$, particularly by additionally positing that resistance for line $k$ is much smaller than reactance for $k$. In assuming such, it is the case that $\cos(\delta_{i}-\delta_{j}) \approx 1$, whereas $\sin(\delta_{i}- \delta_{j})\approx \delta_{i}- \delta_{j}$, so that 
 
