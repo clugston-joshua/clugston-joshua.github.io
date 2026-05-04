@@ -7,10 +7,15 @@
 #
 layout: home
 ---
-This webpage displays some of my recent accomplishments 🎉 and ideas 💡
+Welcome! My name's Josh, and this is where I post about problems that I found interesting enough to take time to experiment with and share with you. 
 
-Most projects here explore the development of effecient methods for solving problems with a lot of data 📊
+If you are visiting for the first time and would like to view my posts, please note that the math rendering can be a bit finicky depending on your browser's settings. If you find that things aren't rendering for you, try changing the MathJax settings in your browsers using the following steps:
 
-Feel free to reach out with opportunities to collaborate 🤝
-
+1) Right clicking an equation you'd like to view
+2) Select "Math Settings"
+3) Select "Math Renderer"
+4) Change the setting from your browser's default to one of the other provided options
+   - I find that SVG renders pretty high-quality equations on my end in Chrome or similar, so this may work for you too!
+  
+Feel free to contact me at the provided email with any questions or comments. 
 --- 
