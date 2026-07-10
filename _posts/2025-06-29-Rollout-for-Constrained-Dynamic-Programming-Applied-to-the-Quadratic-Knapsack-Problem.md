@@ -43,7 +43,7 @@ $$
 
 However, because $x_{i} \in\mathbb{B}$ for all $i$, the aforementioned relaxed problem is actually an exact reformulation of (1)-(3), so solving (4)-(9) equates to solving the original QKP formulation. This is especially beneficial since now the continuous relaxation of (4)-(9) can be applied to obtain an over-estimate of the solution to the original problem.
 
-An approach for solving (1)-(3) first considers instead a relaxation-and-penalization related problem, whereby a non-negative penalty term is added to the original objective function following the relaxation of a complicating constraint. Particularly, if one relaxes the capacity constraint and penalizes its violation using a penalty term $\lambda \in\mathbb{R}_{\geq 0}$, the following, so called, \textit{Lagrangian relaxation}
+An approach for solving (1)-(3) first considers instead a relaxation-and-penalization related problem, whereby a non-negative penalty term is added to the original objective function following the relaxation of a complicating constraint. Particularly, if one relaxes the capacity constraint and penalizes its violation using a penalty term $\lambda \in\mathbb{R}_{\geq 0}$, the following, so called, *Lagrangian relaxation*
 
 \begin{equation}
 \mathcal{L}(\mathbf{x},\lambda) = \sum_{i=1}^{n}\sum_{j=1}^{n}p_{ij}x_{i}x_{j} + \lambda \left(C - \sum_{i=1}^{n}w_{i}x_{i}\right) 
@@ -87,7 +87,7 @@ where $k$ denotes the current item's index and $r$ denotes the current amount of
 \max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}.
 \end{equation}
 
-Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item with capacity used, $r$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $\mathbf{y}$ and $\lambda$ is defined as in \cite{Fomeni-Letchford} using 
+Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item with capacity used, $r$, and set of indices of currently included knapsack items $S$. The immediate profit earned by considering $\mathbf{y}$ and $\lambda$ is defined as in {% cite Fomeni-Letchford %} using 
 
 \begin{equation}
 g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \\{k\\}}p_{kj},
