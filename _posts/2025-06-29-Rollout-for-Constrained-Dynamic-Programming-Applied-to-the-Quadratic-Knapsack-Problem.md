@@ -92,7 +92,7 @@ Let the triple $\mathbf{y} = (k,r,S)$ denote the current state at the $k$th item
 g(\mathbf{y},u) = p_{kk} + 2\sum_{j\in S\setminus \\{k\\}}p_{kj},
 \end{equation}
 
-which is the profit of including item $k$ with capacity used $r$. A viable rollout approach introduces approximate costs-to-go function 
+which is the profit of including item $k$ with capacity used $r$. A viable rollout approach introduces approximate cost-to-go function 
 
 \begin{equation}
 \tilde{J}(\mathbf{y}) = \max\left\\{\sum_{i=1}^{k}\sum_{j=1}^{k}p_{ij}x_{i}x_{j} + \lambda\left(r - \sum_{i=1}^{k}w_{i}x_{i}\right) : \mathbf{x}\in\mathbb{B}^{k},\ \lambda\in \mathbb{R}\right\\}
