@@ -71,7 +71,7 @@ are introduced, and an approach similar to gradient ascent is taken by iterative
 
 for all $k\in \mathbb{Z}_{\geq 0}$. Within each multiplier update, a previous solution $\mathbf{x}$ is obtained by solving (11), and subgradients are scaled according to a positive steps size $s^{k}$, which can be defined in multiple ways. Particularly, in what follows, $s^{k} = s^{0}$ for some $s^{0}\in\mathbb{R}$ for all $k$. The benefit of considering this approach is that, while solving (4)-(9) directly using common methods based on branch-and-bound in the worst case are exponential, solving instead with the subgradient method may be less computationally demanding within this context, especially for difficult problems of reasonably large size.  
 
-% The solution quality of solving the relaxed problem is comparable to solving the McCormick relaxation with binary restriction lifted, however the computational effort of solving the relaxed problem in place of the McCormick relaxation is reduced significantly. 
+[comment]: <> The solution quality of solving the relaxed problem is comparable to solving the McCormick relaxation with binary restriction lifted, however the computational [comment]: <> effort of solving the relaxed problem in place of the McCormick relaxation is reduced significantly. 
 
 ## Method
 By considering $r \in [C]$, $k\in [n]$, the original problem is restricted and written as:
