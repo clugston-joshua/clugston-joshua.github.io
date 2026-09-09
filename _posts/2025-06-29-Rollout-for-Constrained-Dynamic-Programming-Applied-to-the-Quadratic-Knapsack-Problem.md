@@ -74,7 +74,6 @@ for all $k\in \mathbb{Z}_{\geq 0}$. Within each multiplier update, a previous so
 % The solution quality of solving the relaxed problem is comparable to solving the McCormick relaxation with binary restriction lifted, however the computational effort of solving the relaxed problem in place of the McCormick relaxation is reduced significantly. 
 
 ## Method
-\label{method}
 By considering $r \in [C]$, $k\in [n]$, the original problem is restricted and written as:
 
 \begin{equation}
