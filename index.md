@@ -15,7 +15,6 @@ If you are visiting for the first time and would like to view my posts, please n
 2) Select "Math Settings" <br>
 3) Select "Math Renderer" <br>
 4) Change the setting from your browser's default to one of the other provided options
-   - I find that SVG renders pretty high-quality equations on my end in Chrome or similar, so this may work for you too!
   
 Feel free to contact me at the provided email with any questions or comments. 
 --- 
