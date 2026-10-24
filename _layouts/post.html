@@ -50,14 +50,29 @@ layout: base
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
 
-<head>
-  <script>
-    MathJax = {
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]}},
-        equationNumbers: { autoNumber: "AMS" }},
-      },
-    };
-  </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
-</head>
+<script>
+window.MathJax = {
+  svg: {
+    scale: 0.9
+  },
+  tex: {
+    inlineMath: [ ['$','$'] ],
+    displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+    processEscapes: true,
+    processEnvironments: true,
+    autoload: {
+      color: [],
+      colorv2: ['color']
+    },
+    packages: {'[+]': ['noerrors']}
+  },
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  },
+  loader: {
+    load: ['[tex]/noerrors']
+  }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
