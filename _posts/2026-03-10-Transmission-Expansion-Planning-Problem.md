@@ -175,16 +175,16 @@ with the same optimal objective value and installation costs, suggesting that th
 Therefore, the total contribution to the final cost from installation of new lines is $\\$1.1500\times10^{8}$. This indicates that installation of new lines contributed a majority of the cost associated with the optimal objective value, as the optimal cost returned was approximately $\\$1.1586\times10^{8}$, with relative optimality gap
 
 \begin{equation}
-\texttt{rel\_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}|} = 0,
+\texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}|} = 0,
 \end{equation}
 
 for HiGHS, and 
 
 \begin{equation}
-  \texttt{rel\_gap} = \frac{|\texttt{upper\_bound}-\texttt{lower\_bound}|}{|\texttt{upper\_bound}| + \varepsilon} = 0
+  \texttt{rel\\_gap} = \frac{|\texttt{upper\\_bound}-\texttt{lower\\_bound}|}{|\texttt{upper\\_bound}| + \varepsilon} = 0
 \end{equation}
 
-for CPLEX with $\varepsilon = 1.0\times 10^{-10}$ small, where $\texttt{upper\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\_bound}$ is the dual objective value at iteration $t$. When calculating the optimality gap as shown above, tolerance was set at the default value of $0.01\%$ for both HiGHS and CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds.
+for CPLEX with $\varepsilon = 1.0\times 10^{-10}$ small, where $\texttt{upper\\_bound}$ is the primal objective value at iteration $t$, and $\texttt{lower\\_bound}$ is the dual objective value at iteration $t$. When calculating the optimality gap as shown above, tolerance was set at the default value of $0.01\%$ for both HiGHS and CPLEX. Total violation of the constraints is negligible at approximately $3.1494\times10^{-14}$, primarily in the binary portion of the solution. In addition, HiGHS requires a total of 7,035 simplex iterations and finds 19 nodes, terminating as $\texttt{OPTIMAL}$ with the aforementioned solution in approximately two seconds.
 
 With the increased load considered, several generators were found to be set to their production limits. Remaining costs from the optimal objective value, totaling 
 
