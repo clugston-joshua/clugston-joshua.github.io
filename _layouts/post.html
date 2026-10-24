@@ -51,7 +51,10 @@ layout: base
 </article>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.js" type="text/javascript">  MathJax = {
-    SVG: { scale: 90 },
+    loader: {
+      load: ['output/svg']
+    },
+    //svg: { scale: fontCache: 'local' },
     tex: {
       inlineMath: {'[+]': [['$','$']]},
       displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
