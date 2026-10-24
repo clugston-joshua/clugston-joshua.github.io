@@ -50,18 +50,17 @@ layout: base
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.js" type="text/javascript">  MathJax = {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.js">  MathJax = {
     loader: {
       load: ['output/svg']
     },
-    //svg: { scale: fontCache: 'local' },
+    svg: { scale: fontCache: 'local' },
     tex: {
-      inlineMath: {'[+]': [['$','$']]},
+      inlineMath: [['$','$']],
       displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
       processEscapes: true,
       processEnvironments: true,
       equationNumbers: { autoNumber: "AMS" }},
     },
-    //asciimath: { delimiters: [['``','``'], ['`','`']] }, 
   };
 </script>
